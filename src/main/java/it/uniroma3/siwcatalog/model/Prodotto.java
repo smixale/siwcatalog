@@ -1,5 +1,7 @@
 package it.uniroma3.siwcatalog.model;
 
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +24,7 @@ public class Prodotto {
 
     private String descrizione;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "prodottiForniti")
     private Set <Fornitore> fornitori;
 
     @OneToOne(cascade = CascadeType.REMOVE)
@@ -30,6 +32,11 @@ public class Prodotto {
 
     @OneToMany(cascade = CascadeType.REMOVE)
     private List <Commento> commenti;
+
+    public Prodotto(){
+        this.fornitori = new HashSet<>();
+        this.commenti = new LinkedList<>();
+    }
 
     public Long getId() {
         return id;
