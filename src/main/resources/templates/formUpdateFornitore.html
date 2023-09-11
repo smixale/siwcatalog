@@ -8,7 +8,9 @@
         <h1>Modifica: <span th:text="${fornitore.nomeFornitore}"></span></h1>
 
             <div><span>prodotti forniti: </span><span th:if="${fornitore.getProdottiForniti().isEmpty() || fornitore.getProdottiForniti()==null}">il fornitore non ha prodotti</span></div>
-            
+
+            <span th:text="${fornitore.prodottiForniti.size()}"></span>
+
             <div th:each="prodottoFornito : ${fornitore.prodottiForniti}">
                 <div >  
                     <span>Nome:</span>

@@ -34,9 +34,10 @@ public class FornitoreService {
     @Transactional
     public Fornitore addProdotto (Fornitore fornitore, Prodotto prodotto){
 
-        Set <Prodotto> prodotti = fornitore.getProdottiForniti();
-        prodotti.add (prodotto);
-        this.fornitoreRepository.save(fornitore);
+        /*Set <Prodotto> prodotti = fornitore.getProdottiForniti();
+        prodotti.add (prodotto);*/
+    
+        fornitore.getProdottiForniti().add(prodotto);
         return fornitore;
     }
 
@@ -45,7 +46,6 @@ public class FornitoreService {
 
         Set <Prodotto> prodotti = fornitore.getProdottiForniti();
         prodotti.remove (prodotto);
-        this.fornitoreRepository.save(fornitore);
         return fornitore;
     }
 }

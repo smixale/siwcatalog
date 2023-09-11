@@ -84,7 +84,7 @@ public class FornitoreController {
         Prodotto prodotto = this.prodottoService.findProdottoById(prodottoId);
 
         this.fornitoreService.saveFornitore(this.fornitoreService.addProdotto(fornitore,prodotto));
-        //!this.prodottoService.addFornitore(prodotto, fornitore);
+        this.prodottoService.addFornitore(prodotto, fornitore);
 
         model.addAttribute("fornitore", fornitore);
         model.addAttribute("prodotti", this.prodottoService.findAllProdotti());
@@ -97,7 +97,7 @@ public class FornitoreController {
         Prodotto prodotto = this.prodottoService.findProdottoById(prodottoId);
 
         this.fornitoreService.saveFornitore(this.fornitoreService.removeProdotto(fornitore,prodotto));
-        //!this.prodottoService.removeFornitore(prodotto, fornitore);
+        this.prodottoService.removeFornitore(prodotto, fornitore);
 
         model.addAttribute("fornitore", fornitore);
         model.addAttribute("prodotti", this.prodottoService.findAllProdotti());
