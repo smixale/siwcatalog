@@ -69,7 +69,7 @@ public class FornitoreController {
 	}
 
     /*mappinng da dornitore{id} alla form di aggiornamento dell fornitore stesso */
-    @GetMapping(value="/formUpdateFornitore/{id}")
+    @GetMapping("/formUpdateFornitore/{id}")
     public String vaiFormUpdateFornitore(@PathVariable("id") Long id,Model model) {
         Fornitore fornitore= this.fornitoreService.findFornitoreById(id);
         model.addAttribute("fornitore", fornitore);
@@ -78,17 +78,32 @@ public class FornitoreController {
     }
     
     /* mapping da la form di aggirnamento di un fornitore per aggoungergli prodotti */
-    @GetMapping(value="/addProdotto/{fornitoreId}/{prodottoId}")
+    @GetMapping("/addProdotto/{fornitoreId}/{prodottoId}")
     public String addProdottoToFornitore (@PathVariable("fornitoreId") Long fornitoreId, @PathVariable("prodottoId") Long prodottoId,Model model) {
         Fornitore fornitore = this.fornitoreService.findFornitoreById(fornitoreId);
         Prodotto prodotto = this.prodottoService.findProdottoById(prodottoId);
 
-        this.fornitoreService.addProdotto(fornitore,prodotto);
-        this.prodottoService.addFornitore(prodotto, fornitore);
+        this.fornitoreService.saveFornitore(this.fornitoreService.addProdotto(fornitore,prodotto));
+        //!this.prodottoService.addFornitore(prodotto, fornitore);
 
         model.addAttribute("fornitore", fornitore);
         model.addAttribute("prodotti", this.prodottoService.findAllProdotti());
         return "formUpdateFornitore.html";
     }
+
+    @GetMapping(value="/removeProdotto/{fornitoreId}/{prodottoId}")
+    public String removeProdotto (@PathVariable("fornitoreId") Long fornitoreId, @PathVariable("prodottoId") Long prodottoId,Model model) {
+        Fornitore fornitore = this.fornitoreService.findFornitoreById(fornitoreId);
+        Prodotto prodotto = this.prodottoService.findProdottoById(prodottoId);
+
+        this.fornitoreService.saveFornitore(this.fornitoreService.removeProdotto(fornitore,prodotto));
+        //!this.prodottoService.removeFornitore(prodotto, fornitore);
+
+        model.addAttribute("fornitore", fornitore);
+        model.addAttribute("prodotti", this.prodottoService.findAllProdotti());
+
+        return "formUpdateFornitore.html";
+    }
+    
     
 }

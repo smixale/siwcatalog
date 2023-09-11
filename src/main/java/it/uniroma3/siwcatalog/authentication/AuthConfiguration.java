@@ -54,7 +54,7 @@ import javax.sql.DataSource;
                 // chiunque (autenticato o no) può accedere alle pagine index, login, register, ai css e alle immagini
                 .requestMatchers(HttpMethod.GET,"/","/index","/register","/css/**", "/images/**", "favicon.ico", "/primaPagina", "/registrazioneAccedi", "/formNewFornitore", "/listaFornitori", "/dettagliFornitore", "/fornitore/{id}",
                 "/formNewProdotto", "/prodotto/{id}", "/listaProdotti", "/prodotto/{id}", "/login", "/register", "/immagineProdotto/{id}", "/formUpdateFornitore/{id}",
-                "/addProdotto/{fornitoreId}/{prodottoId}").permitAll()
+                "/addProdotto/{fornitoreId}/{prodottoId}", "/removeProdotto/{fornitoreId}/{prodottoId}", "/formUpdateProdotto/{id}", "/addFornitore/{prodottoId}/{fornitoreId}", "/removeFornitore/{prodottoId}/{fornitoreId}").permitAll()
         		// chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 
                 .requestMatchers(HttpMethod.POST,"/register", "/login", "/listaFornitori", "/fornitore", "/prodotto", "/formUpdateFornitore/{id}").permitAll()
                 

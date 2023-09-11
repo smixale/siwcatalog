@@ -12,9 +12,8 @@
             <span>Email: </span>
             <span th:text="${fornitore.emailFornitore}"></span>
 
-            <a th:href="@{'/formUpdateFornitore' + '/' + ${fornitore.id}}">aggiungi prodotti al fornitore</a>
+            <a th:href="@{'/formUpdateFornitore/' + ${fornitore.id}}">aggiungi prodotti al fornitore</a>
 
-            <div th:if="${fornitore.prodottiForniti().isEmpty() || fornitore.prodottiForniti()==null}">il fornitore non ha prodotti</div>
             <div th:each="prodotto : ${fornitore.getProdottiForniti()}">
                 <div >  
                     <span>Nome:</span>

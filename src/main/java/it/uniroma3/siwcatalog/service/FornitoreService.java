@@ -28,15 +28,24 @@ public class FornitoreService {
 
     @Transactional
     public Fornitore findFornitoreById (Long id){
-        return this.fornitoreRepository.findById(id).orElse(null);
+        return this.fornitoreRepository.findById(id).get();
     }
 
     @Transactional
-    public void addProdotto (Fornitore fornitore, Prodotto prodotto){
+    public Fornitore addProdotto (Fornitore fornitore, Prodotto prodotto){
 
         Set <Prodotto> prodotti = fornitore.getProdottiForniti();
         prodotti.add (prodotto);
-
         this.fornitoreRepository.save(fornitore);
+        return fornitore;
+    }
+
+    @Transactional
+    public Fornitore removeProdotto (Fornitore fornitore, Prodotto prodotto){
+
+        Set <Prodotto> prodotti = fornitore.getProdottiForniti();
+        prodotti.remove (prodotto);
+        this.fornitoreRepository.save(fornitore);
+        return fornitore;
     }
 }

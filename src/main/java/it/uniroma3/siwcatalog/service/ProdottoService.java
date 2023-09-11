@@ -41,7 +41,7 @@ public class ProdottoService {
     }
 
     public Prodotto findProdottoById(Long id){
-        return this.prodottoRepository.findById(id).orElse(null);
+        return this.prodottoRepository.findById(id).get();
     }
 
     @Transactional
@@ -49,7 +49,14 @@ public class ProdottoService {
 
         Set <Fornitore> fornitori = prodotto.getFornitori();
         fornitori.add(fornitore);
+        this.prodottoRepository.save(prodotto);
+    }
 
+    @Transactional
+    public void removeFornitore (Prodotto prodotto, Fornitore fornitore){
+
+        Set <Fornitore> prodotti = prodotto.getFornitori();
+        prodotti.remove (fornitore);
         this.prodottoRepository.save(prodotto);
     }
 }

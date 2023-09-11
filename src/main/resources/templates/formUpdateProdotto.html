@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>form update prodotto</title>
+
+        <body>
+            <h1>Modifica: <span th:text="${prodotto.getNomeProdotto()}"></span></h1>
+
+            <div><span>fornito da: </span><span th:if="${prodotto.getFornitori().isEmpty() || prodotto.getFornitori()==null}">il prodotto non è disposnibile</span></div>
+
+            <div th:each="fornitoreProdotto : ${prodotto.fornitori}">
+                <div >  
+                    <span>Nome:</span>
+                    <span th:text="${fornitoreProdotto.nomeFornitore}"></span>
+                    <a th:href="@{'/removeFornitore/' + ${prodotto.id} + '/' + ${fornitoreProdotto.id}}">Rimuovi</a>
+                </div>
+            </div>
+
+            <div><span>Fornitori: </span><span th:if="${fornitori==null || fornitori.isEmpty()==null}">non ci sono fornitori nel database</span></div>
+            <div th:each="fornitore : ${fornitori}" class="blog-post"  >
+                <div >  
+                    <span>Nome:</span>
+                    <span th:text="${fornitore.nomeFornitore}"></span>
+                    <a th:href="@{'/addFornitore/' + ${prodotto.id} + '/' + ${fornitore.id}}">aggiungi fornitore</a>    
+                </div>
+            </div>
+        </body>
+    </head>
+</html>

@@ -17,5 +17,12 @@
             <span>Descrizione:</span>
             <span th:text="${prodotto.descrizione}"></span>
         </div>
+
+        <a th:href="@{'/formUpdateProdotto/' + ${prodotto.id}}">aggiungi fornitori al prodotto</a>
+
+        <div class="elencoFornitori" th:each="fornitore : ${prodotto.getFornitori()}">
+            <span>Nome: </span>
+            <span th:text="${fornitore.nomeFornitore}"></span>
+        </div>
     </body>
 </html>

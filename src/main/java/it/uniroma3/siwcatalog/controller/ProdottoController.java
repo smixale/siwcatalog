@@ -12,11 +12,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import it.uniroma3.siwcatalog.controller.validator.ProdottoValidator;
+import it.uniroma3.siwcatalog.model.Fornitore;
 import it.uniroma3.siwcatalog.model.Prodotto;
+import it.uniroma3.siwcatalog.service.FornitoreService;
 import it.uniroma3.siwcatalog.service.ProdottoService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -28,6 +32,9 @@ public class ProdottoController {
 
     @Autowired
     private ProdottoValidator prodottoValidator;
+
+    @Autowired
+    private FornitoreService fornitoreService;
 
     @GetMapping("/formNewProdotto")
     public String getFormNewProdotto(Model model) {
@@ -62,4 +69,44 @@ public class ProdottoController {
         model.addAttribute("prodotto", prodotto);
 		return "prodotto.html";
 	}
+
+    @GetMapping(value="/formUpdateProdotto/{id}")
+    public String formUpdateProdotto (@PathVariable("id") Long id, Model model) {
+        Prodotto prodotto = this.prodottoService.findProdottoById(id);
+
+        model.addAttribute("prodotto", prodotto);
+        model.addAttribute("fornitori", this.fornitoreService.findAllFornitori());
+
+        return "formUpdateProdotto.html";
+    }
+
+    @GetMapping(value="/addFornitore/{prodottoId}/{fornitoreId}")
+    public String addFornitore (@PathVariable("prodottoId") Long prodottoId, @PathVariable("fornitoreId") Long fornitoreId, Model model) {
+
+        Prodotto prodotto =this.prodottoService.findProdottoById(prodottoId);
+        Fornitore fornitore = this.fornitoreService.findFornitoreById(fornitoreId);
+
+        this.prodottoService.addFornitore(prodotto, fornitore);
+        this.fornitoreService.addProdotto(fornitore, prodotto);
+
+        model.addAttribute("prodotto", prodotto);
+        model.addAttribute("fornitori", this.fornitoreService.findAllFornitori());
+
+        return "formUpdateProdotto.html";
+    }
+
+    @GetMapping(value="/removeFornitore/{prodottoId}/{fornitoreId}")
+    public String removeFornitore (@PathVariable("prodottoId") Long prodottoId, @PathVariable("fornitoreId") Long fornitoreId, Model model) {
+
+        Prodotto prodotto =this.prodottoService.findProdottoById(prodottoId);
+        Fornitore fornitore = this.fornitoreService.findFornitoreById(fornitoreId);
+
+        this.prodottoService.removeFornitore(prodotto, fornitore);
+        this.fornitoreService.removeProdotto(fornitore, prodotto);
+
+        model.addAttribute("prodotto", prodotto);
+        model.addAttribute("fornitori", this.fornitoreService.findAllFornitori());
+        
+        return "formUpdateProdotto.html";
+    }
 }
