@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>form new fornitore</title>
+    </head>
+
+    <body>
+        <h1>aggiungi fornitore</h1>
+        <form th:action="@{/fornitore}" method="POST" enctype="multipart/form-data" th:object="${fornitore}" class="form-post">
+            <div class="campiform">
+                <input type="text" th:field="${fornitore.nomeFornitore}" placeholder="Nome"/>
+            </div>
+
+            <div class="campiform">
+                <input type="email" th:field="${fornitore.emailFornitore}" placeholder="Email"/>
+                
+            </div>
+                
+            <div class="submit">
+                <button type="submit">conferma</button>
+            </div>
+        </form>
+
+    </body>
+</html>

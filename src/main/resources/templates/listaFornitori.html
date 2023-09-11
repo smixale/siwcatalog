@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>lista fornitori</title>
+    </head>
+
+    <body>
+        <h1>lista fornitori</h1>
+
+        <div th:each="fornitore : ${fornitori}" class="blog-post"  >
+            <div >  
+                <span th:text="${fornitore.nomeFornitore}"></span>
+                <span>Email: </span>
+                <span th:text="${fornitore.emailFornitore}"></span>
+                <a th:href="@{'/fornitore' + '/' + ${fornitore.id}}">dettagli fornitore</a>    
+            </div>
+        </div>
+
+    </body>
+</html>

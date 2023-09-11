@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>siwcatalog index</title>
+
+    </head>
+
+    <body>
+        <h1>siwcatalog index</h1>
+
+        <p>funziona :)</p>
+
+        <div class="login">
+            <p th:unless="${userDetails}"><a href="/login">Login</a></p>
+            <p th:if="${userDetails}"><a href="/logout">Logout</a></p>
+        </div>
+
+        <div class="fornitori">
+            <a href="/formNewFornitore">aggiungi un fornitore</a>
+            <a href="/listaFornitori">lista fornitori</a>
+        </div>
+
+        <div class="prodotti">
+            <a href="/formNewProdotto">aggiungi un prodotto</a>
+            <a href="/listaProdotti">lista prodotti</a>
+        </div>
+    </body>
+</html>

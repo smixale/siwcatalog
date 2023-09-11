@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Prodotto</title>
+    </head>
+
+    <body>
+        <h1>Prodotto</h1>
+        <div th:if="${prodotto.getImmagineProdotto()==null}">nessun immagine disponibile</div>
+        <div class="immagine"><img th:src="@{'/immagineProdotto/' + ${prodotto.immagineProdotto.id}}"></div>
+        <div class="informazioni">
+            
+            <span>Nome:</span>
+            <span th:text="${prodotto.nomeProdotto}"></span>
+            <span>prezzo:</span>
+            <span th:text="${prodotto.prezzo}"></span>
+            <span>Descrizione:</span>
+            <span th:text="${prodotto.descrizione}"></span>
+        </div>
+    </body>
+</html>

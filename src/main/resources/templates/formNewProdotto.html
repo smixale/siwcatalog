@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form new Prodotto</title>
+    </head>
+
+    <body>
+        <form th:action="@{/prodotto}" method="POST" th:object="${prodotto}" enctype="multipart/form-data"  class="form-post">
+
+            <div class="campiForm">
+                <input type="text" th:field="${prodotto.nomeProdotto}" placeholder="Nome"/>
+            </div>
+            <div class="campiForm">
+                <input type="text" th:field="${prodotto.prezzo}" placeholder="Prezzo" min="0" stap="0.1"/>
+            </div>
+            <div class="campiForm">
+                <label for="immagine">Aggiungi un immagine</label>
+                <input type="file" name="immagine" accept="image/png, image/jpeg"/>
+            </div>
+            <div class="campiForm">
+                <input type="text" placeholder="descrizione"/>
+            </div>
+
+            <div class="submit">
+                <button type="submit">conferma</button>
+            </div>
+        </form>
+    </body>
+</html>

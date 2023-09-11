@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>lista prodotti</title>
+    </head>
+
+    <body>
+        <h1>lista fornitori</h1>
+
+        <div th:each="prodotto : ${prodotti}" class="blog-post"  >
+            <div >  
+                <span>Nome:</span>
+                <span th:text="${prodotto.nomeProdotto}"></span>
+                <span>prezzo: </span>
+                <span th:text="${prodotto.prezzo}"></span>
+                <a th:href="@{'/prodotto' + '/' + ${prodotto.id}}">dettagli prodotto</a>    
+            </div>
+        </div>
+
+    </body>
+</html>

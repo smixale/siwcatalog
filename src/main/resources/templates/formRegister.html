@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>form register</title>
+    </head>
+
+    <body>
+        <h1>registrazione</h1>
+
+        <div class="registrazione">
+            <form th:action="@{/register}" method="POST">
+				<h1>Sign Up</h1>
+				<div class="input-box">
+					<input name="name" type="text" th:field="${user.name}" placeholder="Name" required/>
+					<span th:if="${#fields.hasErrors('user.name')}" th:errors="${user.name}" th:style="'color:red'"></span>
+					<i class='bx bxs-user-plus' ></i>
+				</div>
+				<div class="input-box">
+					<input name="surname" type="text" th:field="${user.surname}" placeholder="Surname"  required />
+					<span th:if="${#fields.hasErrors('user.surname')}" th:errors="${user.surname}" th:style="'color:red'"></span>
+					<i class='bx bxs-user-plus' ></i>
+				</div>
+				<div class="input-box">
+					<input name="email" type="email" th:field="${user.email}" placeholder="E-mail" required/>
+					<span th:if="${#fields.hasErrors('user.email')}" th:errors="${user.email}" th:style="'color:red'"></span>
+					<i class='bx bxs-envelope' ></i>
+				</div>
+				<div class="input-box">
+					<input name="username" type="text" th:field="${credentials.username}" placeholder="Username" required/>
+					<span th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}" th:style="'color:red'"></span>
+					<i class='bx bxs-user'></i>
+				</div>
+				<div class="input-box">
+					<input name="password" type="password" th:field="${credentials.password}" placeholder="Password" required/>
+					<span th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}" th:style="'color:red'"></span>
+					<i class='bx bxs-lock-alt' ></i>
+				</div>
+				
+				<button type="submit">Register</button>
+				<div class="register-link">
+					<p>Already have an account? <a th:href="@{/login}">Login</a></p>
+				</div>
+			</form>
+        </div>
+    </body>
+</html>
