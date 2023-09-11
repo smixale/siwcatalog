@@ -4,7 +4,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.NotBlank;
 
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.*;
 
@@ -22,7 +22,7 @@ public class Fornitore {
     private String emailFornitore;
 
     @ManyToMany
-    private List <Prodotto> prodottiForniti;
+    private Set <Prodotto> prodottiForniti;
 
     public Long getId() {
         return id;
@@ -46,14 +46,6 @@ public class Fornitore {
 
     public void setEmailFornitore(String emailFornitore) {
         this.emailFornitore = emailFornitore;
-    }
-
-    public List<Prodotto> getProdottiForniti() {
-        return prodottiForniti;
-    }
-
-    public void setProdottiForniti(List<Prodotto> prodottiForniti) {
-        this.prodottiForniti = prodottiForniti;
     }
 
     @Override
@@ -85,6 +77,14 @@ public class Fornitore {
         } else if (!emailFornitore.equals(other.emailFornitore))
             return false;
         return true;
+    }
+
+    public Set<Prodotto> getProdottiForniti() {
+        return prodottiForniti;
+    }
+
+    public void setProdottiForniti(Set<Prodotto> prodottiForniti) {
+        this.prodottiForniti = prodottiForniti;
     }
 
     

@@ -13,8 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siwcatalog.controller.validator.FornitoreValidator;
 import it.uniroma3.siwcatalog.model.Fornitore;
+import it.uniroma3.siwcatalog.model.Prodotto;
 import it.uniroma3.siwcatalog.service.FornitoreService;
+import it.uniroma3.siwcatalog.service.ProdottoService;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
 
 @Controller
 public class FornitoreController {
@@ -24,6 +29,9 @@ public class FornitoreController {
 
     @Autowired
     private FornitoreValidator fornitoreValidator;
+
+    @Autowired
+    private ProdottoService prodottoService;
 
     /* mapping dal'index per la lafina formNewFornitore */
     @GetMapping("/formNewFornitore")
@@ -59,4 +67,28 @@ public class FornitoreController {
         model.addAttribute("fornitore", fornitore);
 		return "fornitore.html";
 	}
+
+    /*mappinng da dornitore{id} alla form di aggiornamento dell fornitore stesso */
+    @GetMapping(value="/formUpdateFornitore/{id}")
+    public String vaiFormUpdateFornitore(@PathVariable("id") Long id,Model model) {
+        Fornitore fornitore= this.fornitoreService.findFornitoreById(id);
+        model.addAttribute("fornitore", fornitore);
+        model.addAttribute("prodotti", this.prodottoService.findAllProdotti());
+        return "formUpdateFornitore.html";
+    }
+    
+    /* mapping da la form di aggirnamento di un fornitore per aggoungergli prodotti */
+    @GetMapping(value="/addProdotto/{fornitoreId}/{prodottoId}")
+    public String addProdottoToFornitore (@PathVariable("fornitoreId") Long fornitoreId, @PathVariable("prodottoId") Long prodottoId,Model model) {
+        Fornitore fornitore = this.fornitoreService.findFornitoreById(fornitoreId);
+        Prodotto prodotto = this.prodottoService.findProdottoById(prodottoId);
+
+        this.fornitoreService.addProdotto(fornitore,prodotto);
+        this.prodottoService.addFornitore(prodotto, fornitore);
+
+        model.addAttribute("fornitore", fornitore);
+        model.addAttribute("prodotti", this.prodottoService.findAllProdotti());
+        return "formUpdateFornitore.html";
+    }
+    
 }

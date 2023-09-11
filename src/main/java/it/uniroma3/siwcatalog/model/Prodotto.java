@@ -1,6 +1,7 @@
 package it.uniroma3.siwcatalog.model;
 
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -21,8 +22,8 @@ public class Prodotto {
 
     private String descrizione;
 
-    @OneToMany
-    private List <Fornitore> fornitori;
+    @ManyToMany
+    private Set <Fornitore> fornitori;
 
     @OneToOne(cascade = CascadeType.REMOVE)
     private Immagine immagineProdotto;
@@ -54,11 +55,11 @@ public class Prodotto {
         this.descrizione = descrizione;
     }
 
-    public List<Fornitore> getFornitori() {
+    public Set<Fornitore> getFornitori() {
         return fornitori;
     }
 
-    public void setFornitori(List<Fornitore> fornitori) {
+    public void setFornitori(Set<Fornitore> fornitori) {
         this.fornitori = fornitori;
     }
 
