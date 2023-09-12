@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import it.uniroma3.siwcatalog.model.Fornitore;
 import it.uniroma3.siwcatalog.model.Prodotto;
 import it.uniroma3.siwcatalog.repository.FornitoreRepository;
+import it.uniroma3.siwcatalog.repository.ProdottoRepository;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -15,6 +16,9 @@ public class FornitoreService {
     
     @Autowired
     private FornitoreRepository fornitoreRepository;
+
+    @Autowired
+    private ProdottoRepository prodottoRepository;
 
     @Transactional
     public Iterable <Fornitore> findAllFornitori(){
@@ -32,20 +36,27 @@ public class FornitoreService {
     }
 
     @Transactional
-    public Fornitore addProdotto (Fornitore fornitore, Prodotto prodotto){
+    public Fornitore addProdotto (Long fornitoreId, Long prodottoId){
 
-        /*Set <Prodotto> prodotti = fornitore.getProdottiForniti();
-        prodotti.add (prodotto);*/
-    
-        fornitore.getProdottiForniti().add(prodotto);
-        return fornitore;
+        Fornitore fornitore = this.fornitoreRepository.findById(fornitoreId).get();
+        Prodotto prodotto = this.prodottoRepository.findById(prodottoId).get();
+
+        Set<Prodotto> prodotti = fornitore.getProdottiForniti();
+        prodotti.add(prodotto);
+        fornitore.setProdottiForniti(prodotti);
+        return this.fornitoreRepository.save(fornitore);
     }
 
     @Transactional
-    public Fornitore removeProdotto (Fornitore fornitore, Prodotto prodotto){
+    public Fornitore removeProdotto (Long fornitoreId, Long prodottoId){
+        
+        Fornitore fornitore = this.fornitoreRepository.findById(fornitoreId).get();
+        Prodotto prodotto = this.prodottoRepository.findById(prodottoId).get();
 
         Set <Prodotto> prodotti = fornitore.getProdottiForniti();
         prodotti.remove (prodotto);
-        return fornitore;
+        fornitore.setProdottiForniti(prodotti);
+
+        return this.fornitoreRepository.save(fornitore);
     }
 }

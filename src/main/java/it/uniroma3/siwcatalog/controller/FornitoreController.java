@@ -80,13 +80,11 @@ public class FornitoreController {
     /* mapping da la form di aggirnamento di un fornitore per aggoungergli prodotti */
     @GetMapping("/addProdotto/{fornitoreId}/{prodottoId}")
     public String addProdottoToFornitore (@PathVariable("fornitoreId") Long fornitoreId, @PathVariable("prodottoId") Long prodottoId,Model model) {
-        Fornitore fornitore = this.fornitoreService.findFornitoreById(fornitoreId);
-        Prodotto prodotto = this.prodottoService.findProdottoById(prodottoId);
 
-        this.fornitoreService.saveFornitore(this.fornitoreService.addProdotto(fornitore,prodotto));
-        this.prodottoService.addFornitore(prodotto, fornitore);
+        
+        this.prodottoService.addFornitore(prodottoId, fornitoreId);
 
-        model.addAttribute("fornitore", fornitore);
+        model.addAttribute("fornitore", this.fornitoreService.addProdotto(fornitoreId,prodottoId));
         model.addAttribute("prodotti", this.prodottoService.findAllProdotti());
         return "formUpdateFornitore.html";
     }
@@ -96,10 +94,9 @@ public class FornitoreController {
         Fornitore fornitore = this.fornitoreService.findFornitoreById(fornitoreId);
         Prodotto prodotto = this.prodottoService.findProdottoById(prodottoId);
 
-        this.fornitoreService.saveFornitore(this.fornitoreService.removeProdotto(fornitore,prodotto));
-        this.prodottoService.removeFornitore(prodotto, fornitore);
+        this.prodottoService.removeFornitore(prodottoId, fornitoreId);
 
-        model.addAttribute("fornitore", fornitore);
+        model.addAttribute("fornitore", this.fornitoreService.removeProdotto(fornitoreId,prodottoId));
         model.addAttribute("prodotti", this.prodottoService.findAllProdotti());
 
         return "formUpdateFornitore.html";

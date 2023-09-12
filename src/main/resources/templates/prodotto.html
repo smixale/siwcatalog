@@ -24,5 +24,33 @@
             <span>Nome: </span>
             <span th:text="${fornitore.nomeFornitore}"></span>
         </div>
+
+        <p><br></p>
+
+        <span>Lascia il tuo commento per il prodotto</span>
+        <form th:action="@{'/addCommento/' + ${prodotto.id}}" method="POST" th:object="${commento}" enctype="multipart/form-data"  class="form-commento">
+
+            <div class="campoForm">
+                <input type="text" th:field="${commento.titolo}" placeholder="Titolo"/>
+            </div>
+            <div class="campoForm">
+                <input type="text" th:field="${commento.testo}" placeholder="Lascia qui il tuo commento"/>
+            </div>
+            <div class="submit">
+                <button type="submit">Invia</button>
+            </div>
+        </form>
+
+        <p><br></p>
+
+        <span th:if="${prodotto.getCommenti().isEmpty()}">Sembra non ci siano commenti per questo prodotto, sii il primo a lasciarne uno!</span>
+        <div class="commenti" th:each="commento : ${prodotto.getCommenti()}">
+            <div class="commento">
+
+                <span th:text="${commento.titolo}"></span>
+                <span th:text="${commento.testo}"></span>
+                <a th:href="@{'/removeCommento/' + ${prodotto.id} + '/' + ${commento.id}}">Rimuovi commento</a>
+            </div>
+        </div>
     </body>
 </html>

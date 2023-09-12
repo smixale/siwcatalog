@@ -7,9 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siwcatalog.model.Commento;
 import it.uniroma3.siwcatalog.model.Fornitore;
 import it.uniroma3.siwcatalog.model.Immagine;
 import it.uniroma3.siwcatalog.model.Prodotto;
+import it.uniroma3.siwcatalog.repository.CommentiRepository;
+import it.uniroma3.siwcatalog.repository.FornitoreRepository;
 import it.uniroma3.siwcatalog.repository.ImmaginiRepository;
 import it.uniroma3.siwcatalog.repository.ProdottoRepository;
 import jakarta.transaction.Transactional;
@@ -22,6 +25,12 @@ public class ProdottoService {
     
     @Autowired
     private ImmaginiRepository immagineRepository;
+
+    @Autowired
+    private CommentiRepository commentiRepository;
+
+    @Autowired
+    private FornitoreRepository fornitoreRepository;
 
     /* metodo che riceve separatamente un immagine in forma di MuiltipartFile e un prodotto privo di immagine e assegna ad esso l'immagine ricevuta per poi salvare e restituire il prodotto ora completo */
     @Transactional
@@ -45,16 +54,57 @@ public class ProdottoService {
     }
 
     @Transactional
-    public void addFornitore(Prodotto prodotto, Fornitore fornitore){
+    public Prodotto addFornitore(Long prodottoId, Long fornitoreId){
+
+        Fornitore fornitore = this.fornitoreRepository.findById(fornitoreId).get();
+        Prodotto prodotto = this.prodottoRepository.findById(prodottoId).get();
+
         Set <Fornitore> fornitori = prodotto.getFornitori();
         fornitori.add(fornitore);
-        this.prodottoRepository.save(prodotto);
+        prodotto.setFornitori(fornitori);
+
+        return this.prodottoRepository.save(prodotto);
     }
 
     @Transactional
-    public void removeFornitore (Prodotto prodotto, Fornitore fornitore){
-        Set <Fornitore> prodotti = prodotto.getFornitori();
-        prodotti.remove (fornitore);
+    public Prodotto removeFornitore (Long prodottoId, Long fornitoreId){
+
+        Fornitore fornitore = this.fornitoreRepository.findById(fornitoreId).get();
+        Prodotto prodotto = this.prodottoRepository.findById(prodottoId).get();
+
+        Set <Fornitore> fornitori = prodotto.getFornitori();
+        fornitori.remove (fornitore);
+        prodotto.setFornitori(fornitori);
+
+        return this.prodottoRepository.save(prodotto);
+    }
+
+    @Transactional
+    public void addCommento (Prodotto prodotto,Commento commento){
+        Set<Commento> commenti = prodotto.getCommenti();
+        commenti.add(commento);
+        prodotto.setCommenti(commenti);
         this.prodottoRepository.save(prodotto);
+    }
+
+    public Prodotto addCommento(Long prodottoId,Long commentoId){
+        Prodotto prodotto = this.prodottoRepository.findById(prodottoId).get();
+        Commento commento = this.commentiRepository.findById(commentoId).get();
+
+        Set<Commento> commenti = prodotto.getCommenti();
+        commenti.add(commento);
+        prodotto.setCommenti(commenti);
+        return this.prodottoRepository.save(prodotto);
+    }
+
+    public Prodotto removeCommento(Long prodottoId,Long commentoId){
+
+        Prodotto prodotto = this.prodottoRepository.findById(prodottoId).get();
+        Commento commento = this.commentiRepository.findById(commentoId).get();
+
+        Set<Commento> commenti = prodotto.getCommenti();
+        commenti.remove(commento);
+        prodotto.setCommenti(commenti);
+        return this.prodottoRepository.save(prodotto);
     }
 }

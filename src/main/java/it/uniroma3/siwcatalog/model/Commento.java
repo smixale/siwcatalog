@@ -12,15 +12,14 @@ public class Commento {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank
     private String autore;
 
     @NotBlank
     private String titolo;
 
     @NotBlank
-    @Column(length = 5000)
     private String testo;
+
 
     public Long getId() {
         return id;
@@ -58,7 +57,8 @@ public class Commento {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((autore == null) ? 0 : autore.hashCode());
+        result = prime * result + ((titolo == null) ? 0 : titolo.hashCode());
+        result = prime * result + ((testo == null) ? 0 : testo.hashCode());
         return result;
     }
 
@@ -71,13 +71,19 @@ public class Commento {
         if (getClass() != obj.getClass())
             return false;
         Commento other = (Commento) obj;
-        if (autore == null) {
-            if (other.autore != null)
+        if (titolo == null) {
+            if (other.titolo != null)
                 return false;
-        } else if (!autore.equals(other.autore))
+        } else if (!titolo.equals(other.titolo))
+            return false;
+        if (testo == null) {
+            if (other.testo != null)
+                return false;
+        } else if (!testo.equals(other.testo))
             return false;
         return true;
     }
-    
+
+
     
 }

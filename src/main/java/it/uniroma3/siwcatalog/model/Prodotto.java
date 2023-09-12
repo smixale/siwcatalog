@@ -31,11 +31,11 @@ public class Prodotto {
     private Immagine immagineProdotto;
 
     @OneToMany(cascade = CascadeType.REMOVE)
-    private List <Commento> commenti;
+    private Set <Commento> commenti;
 
     public Prodotto(){
         this.fornitori = new HashSet<>();
-        this.commenti = new LinkedList<>();
+        this.commenti = new HashSet<>();
     }
 
     public Long getId() {
@@ -78,14 +78,6 @@ public class Prodotto {
         this.immagineProdotto = immagineProdotto;
     }
 
-    public List<Commento> getCommenti() {
-        return commenti;
-    }
-
-    public void setCommenti(List<Commento> commenti) {
-        this.commenti = commenti;
-    }
-
     public Float getPrezzo() {
         return prezzo;
     }
@@ -117,6 +109,14 @@ public class Prodotto {
         } else if (!prezzo.equals(other.prezzo))
             return false;
         return true;
+    }
+
+    public Set<Commento> getCommenti() {
+        return commenti;
+    }
+
+    public void setCommenti(Set<Commento> commenti) {
+        this.commenti = commenti;
     }
 
 }

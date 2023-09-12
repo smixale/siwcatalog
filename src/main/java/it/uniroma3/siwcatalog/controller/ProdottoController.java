@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
 import it.uniroma3.siwcatalog.controller.validator.ProdottoValidator;
+import it.uniroma3.siwcatalog.model.Commento;
 import it.uniroma3.siwcatalog.model.Fornitore;
 import it.uniroma3.siwcatalog.model.Prodotto;
 import it.uniroma3.siwcatalog.service.FornitoreService;
@@ -47,6 +48,7 @@ public class ProdottoController {
         this.prodottoValidator.validate(prodotto, bindingResult);
         if (!bindingResult.hasErrors()) {
             model.addAttribute("prodotto", this.prodottoService.creaProdotto(prodotto, immagine));
+            model.addAttribute("commento", new Commento());
             return "prodotto.html";
         }else{
             //return "erroreProdotto.html";
@@ -67,6 +69,7 @@ public class ProdottoController {
 	public String getStrategia(@PathVariable("id") Long id, Model model) {
 		Prodotto prodotto= this.prodottoService.findProdottoById(id);
         model.addAttribute("prodotto", prodotto);
+        model.addAttribute("commento", new Commento());
 		return "prodotto.html";
 	}
 
@@ -83,13 +86,9 @@ public class ProdottoController {
     @GetMapping(value="/addFornitore/{prodottoId}/{fornitoreId}")
     public String addFornitore (@PathVariable("prodottoId") Long prodottoId, @PathVariable("fornitoreId") Long fornitoreId, Model model) {
 
-        Prodotto prodotto =this.prodottoService.findProdottoById(prodottoId);
-        Fornitore fornitore = this.fornitoreService.findFornitoreById(fornitoreId);
+        this.fornitoreService.addProdotto(fornitoreId, prodottoId);
 
-        this.prodottoService.addFornitore(prodotto, fornitore);
-        this.fornitoreService.addProdotto(fornitore, prodotto);
-
-        model.addAttribute("prodotto", prodotto);
+        model.addAttribute("prodotto", this.prodottoService.addFornitore(prodottoId, fornitoreId));
         model.addAttribute("fornitori", this.fornitoreService.findAllFornitori());
 
         return "formUpdateProdotto.html";
@@ -98,13 +97,9 @@ public class ProdottoController {
     @GetMapping(value="/removeFornitore/{prodottoId}/{fornitoreId}")
     public String removeFornitore (@PathVariable("prodottoId") Long prodottoId, @PathVariable("fornitoreId") Long fornitoreId, Model model) {
 
-        Prodotto prodotto =this.prodottoService.findProdottoById(prodottoId);
-        Fornitore fornitore = this.fornitoreService.findFornitoreById(fornitoreId);
+        this.fornitoreService.removeProdotto(fornitoreId, prodottoId);
 
-        this.prodottoService.removeFornitore(prodotto, fornitore);
-        this.fornitoreService.removeProdotto(fornitore, prodotto);
-
-        model.addAttribute("prodotto", prodotto);
+        model.addAttribute("prodotto", this.prodottoService.removeFornitore(prodottoId, fornitoreId));
         model.addAttribute("fornitori", this.fornitoreService.findAllFornitori());
         
         return "formUpdateProdotto.html";
