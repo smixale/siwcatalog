@@ -54,8 +54,7 @@ public class ProdottoController {
             model.addAttribute("commento", new Commento());
             return "prodotto.html";
         }else{
-            //return "erroreProdotto.html";
-            return "/formNewProdotto.html";
+            return "erroreProdotto.html";
         }
         
     }
