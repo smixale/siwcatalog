@@ -43,8 +43,8 @@ public class FornitoreController {
     public String listaFornitori(Model model, @Valid @ModelAttribute("fornitore") Fornitore fornitore, BindingResult bindingResult) throws IOException{
         this.fornitoreValidator.validate(fornitore, bindingResult);
         if (!bindingResult.hasErrors()) {            
-            this.fornitoreService.saveFornitore(fornitore);              //il save della repository salva la variabile nel database
-            model.addAttribute("fornitori", fornitore);         //model.addAttribute restituisce alla pagina mappata la seconda variabile con il nome specificato
+            this.fornitoreService.saveFornitore(fornitore);
+            model.addAttribute("fornitori", fornitore);  
             return "fornitore.html";
         }else{
             return "erroreFornitore.html";

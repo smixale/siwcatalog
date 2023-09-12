@@ -32,10 +32,10 @@
             <form th:action="@{'/addCommento/' + ${prodotto.id}}" method="POST" th:object="${commento}" enctype="multipart/form-data"  class="form-commento">
     
                 <div class="campoForm">
-                    <input type="text" th:field="${commento.titolo}" placeholder="Titolo"/>
+                    <input type="text" th:field="${commento.titolo}" placeholder="Titolo" required/>
                 </div>
                 <div class="campoForm">
-                    <input type="text" th:field="${commento.testo}" placeholder="Lascia qui il tuo commento"/>
+                    <input type="text" th:field="${commento.testo}" placeholder="Lascia qui il tuo commento" value="proviamo così" required/>
                 </div>
                 <div class="submit">
                     <button type="submit">Invia</button>
@@ -52,7 +52,9 @@
                 <span th:if="${commento.autore!=null}">Autore: <span th:text="${commento.autore}"></span></span>
                 <span th:text="${commento.titolo}"></span>
                 <span th:text="${commento.testo}"></span>
-                <a th:href="@{'/removeCommento/' + ${prodotto.id} + '/' + ${commento.id}}">Rimuovi commento</a>
+                <a th:href="@{'/removeCommento/' + ${prodotto.id} + '/' + ${commento.id}}">Rimuovi</a>
+                <span th:if="${commento.autore==user.getUsername()}"><a th:href="@{'/removeCommento/' + ${prodotto.id} + '/' + ${commento.id}}">Modifica</a></span>
+                <p></p>
             </div>
         </div>
     </body>

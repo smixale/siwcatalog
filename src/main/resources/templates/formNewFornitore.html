@@ -8,11 +8,11 @@
         <h1>aggiungi fornitore</h1>
         <form th:action="@{/fornitore}" method="POST" enctype="multipart/form-data" th:object="${fornitore}" class="form-post">
             <div class="campiform">
-                <input type="text" th:field="${fornitore.nomeFornitore}" placeholder="Nome"/>
+                <input type="text" th:field="${fornitore.nomeFornitore}" placeholder="Nome" required/>
             </div>
 
             <div class="campiform">
-                <input type="email" th:field="${fornitore.emailFornitore}" placeholder="Email"/>
+                <input type="email" th:field="${fornitore.emailFornitore}" placeholder="Email" required/>
                 
             </div>
                 

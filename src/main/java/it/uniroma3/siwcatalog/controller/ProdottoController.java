@@ -35,6 +35,9 @@ public class ProdottoController {
     @Autowired
     private FornitoreService fornitoreService;
 
+    @Autowired
+    private GlobalController globalController;
+
     @GetMapping("/formNewProdotto")
     public String getFormNewProdotto(Model model) {
         model.addAttribute("prodotto", new Prodotto());
@@ -47,6 +50,7 @@ public class ProdottoController {
         if (!bindingResult.hasErrors()) {
             model.addAttribute("prodotto", this.prodottoService.creaProdotto(prodotto, immagine));
             model.addAttribute("commentato", this.prodottoService.commentato(prodotto.getId()));
+            model.addAttribute("user", this.globalController.getUser());
             model.addAttribute("commento", new Commento());
             return "prodotto.html";
         }else{
@@ -69,6 +73,7 @@ public class ProdottoController {
 		Prodotto prodotto= this.prodottoService.findProdottoById(id);
         model.addAttribute("prodotto", prodotto);
         model.addAttribute("commentato", this.prodottoService.commentato(id));
+        model.addAttribute("user", this.globalController.getUser());
         model.addAttribute("commento", new Commento());
 		return "prodotto.html";
 	}

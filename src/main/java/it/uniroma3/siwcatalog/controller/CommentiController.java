@@ -29,6 +29,9 @@ public class CommentiController {
     @Autowired
     private CommentoValidator commentoValidator;
 
+    @Autowired
+    private GlobalController globalController;
+
     
     /* mapping dalla pagina prodotto per creare un commento relativo al prodotto stesso */
     @PostMapping("/addCommento/{id}")
@@ -41,6 +44,7 @@ public class CommentiController {
 
         model.addAttribute("prodotto", prodotto);
         model.addAttribute("commentato", this.prodottoService.commentato(id));
+        model.addAttribute("user", this.globalController.getUser());
         model.addAttribute("commento", new Commento());
         return "prodotto.html";
     }
@@ -51,6 +55,7 @@ public class CommentiController {
         model.addAttribute("prodotto", this.prodottoService.removeCommento(prodottoId, commentoId));
         this.commentoService.deleteCommento(commentoId);
         model.addAttribute("commentato", this.prodottoService.commentato(prodottoId));
+        model.addAttribute("user", this.globalController.getUser());
         model.addAttribute("commento", new Commento());
         return "prodotto.html";
     }
