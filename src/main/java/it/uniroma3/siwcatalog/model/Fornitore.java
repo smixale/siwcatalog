@@ -21,8 +21,7 @@ public class Fornitore {
     @NotBlank
     private String emailFornitore;
 
-    @ManyToMany
-    @JoinColumn(name = "prodotti")
+    @ManyToMany(mappedBy = "fornitori")
     private Set <Prodotto> prodottiForniti;
 
     public Long getId() {

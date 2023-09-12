@@ -13,14 +13,12 @@ import org.springframework.validation.BindingResult;
 
 import it.uniroma3.siwcatalog.controller.validator.ProdottoValidator;
 import it.uniroma3.siwcatalog.model.Commento;
-import it.uniroma3.siwcatalog.model.Fornitore;
 import it.uniroma3.siwcatalog.model.Prodotto;
 import it.uniroma3.siwcatalog.service.FornitoreService;
 import it.uniroma3.siwcatalog.service.ProdottoService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -48,6 +46,7 @@ public class ProdottoController {
         this.prodottoValidator.validate(prodotto, bindingResult);
         if (!bindingResult.hasErrors()) {
             model.addAttribute("prodotto", this.prodottoService.creaProdotto(prodotto, immagine));
+            model.addAttribute("commentato", this.prodottoService.commentato(prodotto.getId()));
             model.addAttribute("commento", new Commento());
             return "prodotto.html";
         }else{
@@ -69,6 +68,7 @@ public class ProdottoController {
 	public String getStrategia(@PathVariable("id") Long id, Model model) {
 		Prodotto prodotto= this.prodottoService.findProdottoById(id);
         model.addAttribute("prodotto", prodotto);
+        model.addAttribute("commentato", this.prodottoService.commentato(id));
         model.addAttribute("commento", new Commento());
 		return "prodotto.html";
 	}
@@ -83,7 +83,7 @@ public class ProdottoController {
         return "formUpdateProdotto.html";
     }
 
-    @GetMapping(value="/addFornitore/{prodottoId}/{fornitoreId}")
+    @GetMapping("/addFornitore/{prodottoId}/{fornitoreId}")
     public String addFornitore (@PathVariable("prodottoId") Long prodottoId, @PathVariable("fornitoreId") Long fornitoreId, Model model) {
 
         this.fornitoreService.addProdotto(fornitoreId, prodottoId);

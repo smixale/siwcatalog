@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siwcatalog.controller.validator.FornitoreValidator;
 import it.uniroma3.siwcatalog.model.Fornitore;
-import it.uniroma3.siwcatalog.model.Prodotto;
 import it.uniroma3.siwcatalog.service.FornitoreService;
 import it.uniroma3.siwcatalog.service.ProdottoService;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -89,10 +87,8 @@ public class FornitoreController {
         return "formUpdateFornitore.html";
     }
 
-    @GetMapping(value="/removeProdotto/{fornitoreId}/{prodottoId}")
+    @GetMapping("/removeProdotto/{fornitoreId}/{prodottoId}")
     public String removeProdotto (@PathVariable("fornitoreId") Long fornitoreId, @PathVariable("prodottoId") Long prodottoId,Model model) {
-        Fornitore fornitore = this.fornitoreService.findFornitoreById(fornitoreId);
-        Prodotto prodotto = this.prodottoService.findProdottoById(prodottoId);
 
         this.prodottoService.removeFornitore(prodottoId, fornitoreId);
 

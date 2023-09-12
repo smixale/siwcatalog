@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siwcatalog.controller.validator.CommentoValidator;
 import it.uniroma3.siwcatalog.model.Commento;
 import it.uniroma3.siwcatalog.model.Prodotto;
 import it.uniroma3.siwcatalog.service.CommentoService;
@@ -26,7 +27,8 @@ public class CommentiController {
     private ProdottoService prodottoService;
 
     @Autowired
-    private GlobalController globalController;
+    private CommentoValidator commentoValidator;
+
     
     /* mapping dalla pagina prodotto per creare un commento relativo al prodotto stesso */
     @PostMapping("/addCommento/{id}")
@@ -34,10 +36,11 @@ public class CommentiController {
 
         //commento.setAutore(this.globalController.getUser().getUsername());
         Prodotto prodotto = this.prodottoService.findProdottoById(id);
-        
-        this.prodottoService.addCommento(prodotto,this.commentoService.saveCommento(commento));
+        this.commentoValidator.validate(commento, bindingResult);
+        this.prodottoService.addCommento(prodotto,this.commentoService.creaCommento(commento));
 
         model.addAttribute("prodotto", prodotto);
+        model.addAttribute("commentato", this.prodottoService.commentato(id));
         model.addAttribute("commento", new Commento());
         return "prodotto.html";
     }
@@ -47,6 +50,7 @@ public class CommentiController {
 
         model.addAttribute("prodotto", this.prodottoService.removeCommento(prodottoId, commentoId));
         this.commentoService.deleteCommento(commentoId);
+        model.addAttribute("commentato", this.prodottoService.commentato(prodottoId));
         model.addAttribute("commento", new Commento());
         return "prodotto.html";
     }

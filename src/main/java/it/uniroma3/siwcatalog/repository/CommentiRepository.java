@@ -5,5 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import it.uniroma3.siwcatalog.model.Commento;
 
 public interface CommentiRepository extends CrudRepository<Commento,Long>{
+
+    public boolean existsByTitoloAndTestoAndAutore(String titolo, String testo, String autore);
     
 }

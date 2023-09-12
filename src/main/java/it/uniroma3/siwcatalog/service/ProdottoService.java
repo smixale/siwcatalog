@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siwcatalog.controller.GlobalController;
 import it.uniroma3.siwcatalog.model.Commento;
 import it.uniroma3.siwcatalog.model.Fornitore;
 import it.uniroma3.siwcatalog.model.Immagine;
@@ -31,6 +32,9 @@ public class ProdottoService {
 
     @Autowired
     private FornitoreRepository fornitoreRepository;
+
+    @Autowired
+    private GlobalController globalController;
 
     /* metodo che riceve separatamente un immagine in forma di MuiltipartFile e un prodotto privo di immagine e assegna ad esso l'immagine ricevuta per poi salvare e restituire il prodotto ora completo */
     @Transactional
@@ -106,5 +110,25 @@ public class ProdottoService {
         commenti.remove(commento);
         prodotto.setCommenti(commenti);
         return this.prodottoRepository.save(prodotto);
+    }
+
+    @Transactional
+    public boolean commentato (Long prodottoId){
+        return this.verifica(this.findProdottoById(prodottoId));
+    }
+
+    /*verifica se l'utente attualmente loggato ha già lasciato un commento al prodotto richiesto */
+    private boolean verifica(Prodotto prodotto){
+        Set<Commento> commenti = prodotto.getCommenti();
+        if (this.globalController.getUser()==null) {
+            return false;
+        }
+        String username = this.globalController.getUser().getUsername();
+        for (Commento c : commenti) {
+            if (c.getAutore().equals(username)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
