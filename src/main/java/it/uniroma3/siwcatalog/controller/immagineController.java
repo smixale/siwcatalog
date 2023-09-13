@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+
 
 
 import it.uniroma3.siwcatalog.model.Immagine;
 import it.uniroma3.siwcatalog.service.ImmagineService;
 
 
+@Controller
 public class immagineController {
 
     @Autowired

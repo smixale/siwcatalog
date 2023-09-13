@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import it.uniroma3.siwcatalog.model.Immagine;
 import it.uniroma3.siwcatalog.repository.ImmaginiRepository;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class ImmagineService {
     
     @Autowired
