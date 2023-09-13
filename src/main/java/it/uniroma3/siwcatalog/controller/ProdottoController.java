@@ -54,6 +54,7 @@ public class ProdottoController {
             model.addAttribute("commento", new Commento());
             return "prodotto.html";
         }else{
+            model.addAttribute("messaggio", "Attenzione questo prodotto e' già presente nel sistema");
             return "erroreProdotto.html";
         }
         
@@ -112,6 +113,7 @@ public class ProdottoController {
     @GetMapping(value="/deleteProdotto/{id}")
     public String rimuoviFornitore(@PathVariable("id") Long id, Model model) {
         if (!(this.prodottoService.existsById(id))) {
+            model.addAttribute("messaggio", "qualcosa è andato storto");
             return "erroreProdotto.html";
         }
         this.prodottoService.deleteProdotto(id);

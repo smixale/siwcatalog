@@ -49,6 +49,7 @@ public class FornitoreController {
             model.addAttribute("fornitori", fornitore);  
             return "fornitore.html";
         }else{
+            model.addAttribute("messaggio", "Questo fornitore è già presente nel sistema");
             return "erroreFornitore.html";
         }
     }
@@ -103,6 +104,7 @@ public class FornitoreController {
     @GetMapping(value="/deleteFornitore/{id}")
     public String rimuoviFornitore(@PathVariable("id") Long id, Model model) {
         if (!(this.fornitoreService.existsById(id))) {
+            model.addAttribute("messaggio", "Qualcosa è andato storto");
             return "erroreFornitore.html";
         }
         this.fornitoreService.deleteFornitore(id);
