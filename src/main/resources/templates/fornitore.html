@@ -14,7 +14,7 @@
 
             <a th:href="@{'/formUpdateFornitore/' + ${fornitore.id}}">aggiungi prodotti al fornitore</a>
 
-            <div th:each="prodotto : ${fornitore.getProdottiForniti()}">
+            <div th:each="prodotto : ${fornitore.prodottiForniti}">
                 <div >  
                     <span>Nome:</span>
                     <span th:text="${prodotto.nomeProdotto}"></span>

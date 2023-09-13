@@ -6,7 +6,7 @@
 
     <body>
         <h1>Prodotto</h1>
-        <div th:if="${prodotto.getImmagineProdotto()==null}">nessun immagine disponibile</div>
+        <div th:if="${prodotto.immagineProdotto==null}">nessun immagine disponibile</div>
         <div class="immagine"><img th:src="@{'/immagineProdotto/' + ${prodotto.immagineProdotto.id}}"></div>
         <div class="informazioni">
             
