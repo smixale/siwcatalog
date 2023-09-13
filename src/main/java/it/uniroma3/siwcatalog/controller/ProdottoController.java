@@ -44,7 +44,7 @@ public class ProdottoController {
         return "/formNewProdotto.html";
     }
     
-    @PostMapping("prodotto")
+    @PostMapping("/prodotto")
     public String getProdotto(@Valid @ModelAttribute("prodotto") Prodotto prodotto, BindingResult bindingResult, Model model, @ModelAttribute("file") MultipartFile immagine) throws IOException {
         this.prodottoValidator.validate(prodotto, bindingResult);
         if (!bindingResult.hasErrors()) {
@@ -66,7 +66,7 @@ public class ProdottoController {
         return "listaProdotti.html";
     }
 
-  /* mapping da la pagina listaFornitori per il prodotto nel dettaglio */
+   /* mapping da la pagina listaFornitori per il prodotto nel dettaglio */
    @GetMapping("/prodotto/{id}")
 	public String getStrategia(@PathVariable("id") Long id, Model model) {
 		Prodotto prodotto= this.prodottoService.findProdottoById(id);

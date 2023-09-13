@@ -43,7 +43,7 @@ public class FornitoreController {
     public String listaFornitori(Model model, @Valid @ModelAttribute("fornitore") Fornitore fornitore, BindingResult bindingResult) throws IOException{
         this.fornitoreValidator.validate(fornitore, bindingResult);
         if (!bindingResult.hasErrors()) {            
-            this.fornitoreService.saveFornitore(fornitore);
+            this.fornitoreService.creaFornitore(fornitore);
             model.addAttribute("fornitori", fornitore);  
             return "fornitore.html";
         }else{

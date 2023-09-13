@@ -21,6 +21,16 @@ public class Fornitore {
     @NotBlank
     private String emailFornitore;
 
+    private String indirizzo;
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+    }
+
     @ManyToMany(mappedBy = "fornitori")
     private Set <Prodotto> prodottiForniti;
 

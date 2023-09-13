@@ -26,6 +26,14 @@ public class FornitoreService {
     }
 
     @Transactional
+    public void creaFornitore(Fornitore fornitore){
+        if(fornitore.getIndirizzo()==null){
+            fornitore.setIndirizzo("indirizzo sconosciuto");
+        }
+        this.fornitoreRepository.save(fornitore);
+    }
+
+    @Transactional
     public void saveFornitore(Fornitore fornitore){
         this.fornitoreRepository.save(fornitore);
     }

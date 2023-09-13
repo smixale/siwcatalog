@@ -52,7 +52,7 @@
                 <span th:if="${commento.autore!=null}">Autore: <span th:text="${commento.autore}"></span></span>
                 <span th:text="${commento.titolo}"></span>
                 <span th:text="${commento.testo}"></span>
-                <a th:href="@{'/removeCommento/' + ${prodotto.id} + '/' + ${commento.id}}">Rimuovi</a>
+                <a th:if="${role!=null && role=='ADMIN'}" th:href="@{'/removeCommento/' + ${prodotto.id} + '/' + ${commento.id}}">Rimuovi</a>
                 <span th:if="${commento.autore==user.getUsername()}"><a th:href="@{'/removeCommento/' + ${prodotto.id} + '/' + ${commento.id}}">Modifica</a></span>
                 <p></p>
             </div>
