@@ -108,4 +108,14 @@ public class ProdottoController {
         
         return "formUpdateProdotto.html";
     }
+
+    @GetMapping(value="/deleteProdotto/{id}")
+    public String rimuoviFornitore(@PathVariable("id") Long id, Model model) {
+        if (!(this.prodottoService.existsById(id))) {
+            return "erroreProdotto.html";
+        }
+        this.prodottoService.deleteProdotto(id);
+        model.addAttribute("prodotti",  this.prodottoService.findAllProdotti());
+        return "listaProdotti.html";
+    }
 }

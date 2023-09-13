@@ -102,6 +102,9 @@ public class FornitoreController {
     
     @GetMapping(value="/deleteFornitore/{id}")
     public String rimuoviFornitore(@PathVariable("id") Long id, Model model) {
+        if (!(this.fornitoreService.existsById(id))) {
+            return "erroreFornitore.html";
+        }
         this.fornitoreService.deleteFornitore(id);
         model.addAttribute("fornitori",  this.fornitoreService.findAllFornitori());
         return "listaFornitori.html";

@@ -36,6 +36,10 @@ public class FornitoreService {
         this.fornitoreRepository.save(fornitore);
     }
 
+    public boolean existsById (Long id){
+        return this.fornitoreRepository.existsById(id);
+    }
+
     @Transactional
     public void saveFornitore(Fornitore fornitore){
         this.fornitoreRepository.save(fornitore);
@@ -73,8 +77,6 @@ public class FornitoreService {
 
     @Transactional
     public void deleteFornitore (Long id){
-        Fornitore f = this.fornitoreRepository.findById(id).get();
-
         this.fornitoreRepository.deleteById(this.rimuoviProdotti(id));
     }
 

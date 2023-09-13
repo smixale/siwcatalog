@@ -58,6 +58,11 @@ public class ProdottoService {
     }
 
     @Transactional
+    public boolean existsById(Long id){
+        return this.prodottoRepository.existsById(id);
+    }
+
+    @Transactional
     public Prodotto addFornitore(Long prodottoId, Long fornitoreId){
 
         Fornitore fornitore = this.fornitoreRepository.findById(fornitoreId).get();
@@ -130,5 +135,22 @@ public class ProdottoService {
             }
         }
         return true;
+    }
+
+    @Transactional
+    public void deleteProdotto (Long id){
+        //this.prodottoRepository.deleteById(this.rimuoviFornitore(id));
+        this.prodottoRepository.deleteById(id);
+    }
+
+    /* funzione di supporto che rimuove il fornitore da i prodotti */
+    private Long rimuoviFornitore(Long id){
+        Set<Fornitore> fornitori = this.prodottoRepository.findById(id).get().getFornitori();
+        for (Fornitore fornitore : fornitori) {
+            this.removeFornitore(id, fornitore.getId());
+            this.fornitoreRepository.save(fornitore);
+        }
+        this.fornitoreRepository.findById(id);
+        return id;
     }
 }
