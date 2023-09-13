@@ -22,13 +22,13 @@ public class Prodotto {
 
     private String descrizione;
 
-    @ManyToMany //(mappedBy = "prodottiForniti")
+    @ManyToMany
     private Set <Fornitore> fornitori;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.ALL)
     private Immagine immagineProdotto;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
+    @OneToMany(cascade = CascadeType.ALL)
     private Set <Commento> commenti;
 
     public Prodotto(){

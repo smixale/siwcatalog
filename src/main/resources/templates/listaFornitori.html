@@ -15,6 +15,7 @@
                 <span>Indirizzo: </span>
                 <span th:text="${fornitore.indirizzo}"></span>
                 <a th:href="@{'/fornitore' + '/' + ${fornitore.id}}">dettagli fornitore</a>    
+                <a th:href="@{'/deleteFornitore/' + ${fornitore.id}}">Rimuovi</a>
             </div>
         </div>
 

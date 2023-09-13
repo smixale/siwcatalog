@@ -16,6 +16,8 @@ import it.uniroma3.siwcatalog.model.Fornitore;
 import it.uniroma3.siwcatalog.service.FornitoreService;
 import it.uniroma3.siwcatalog.service.ProdottoService;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -96,6 +98,13 @@ public class FornitoreController {
         model.addAttribute("prodotti", this.prodottoService.findAllProdotti());
 
         return "formUpdateFornitore.html";
+    }
+    
+    @GetMapping(value="/deleteFornitore/{id}")
+    public String rimuoviFornitore(@PathVariable("id") Long id, Model model) {
+        this.fornitoreService.deleteFornitore(id);
+        model.addAttribute("fornitori",  this.fornitoreService.findAllFornitori());
+        return "listaFornitori.html";
     }
     
     

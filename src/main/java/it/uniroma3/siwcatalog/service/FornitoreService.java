@@ -20,6 +20,9 @@ public class FornitoreService {
     @Autowired
     private ProdottoRepository prodottoRepository;
 
+    @Autowired
+    private ProdottoService prodottoService;
+
     @Transactional
     public Iterable <Fornitore> findAllFornitori(){
         return this.fornitoreRepository.findAll();
@@ -66,5 +69,23 @@ public class FornitoreService {
         fornitore.setProdottiForniti(prodotti);
 
         return this.fornitoreRepository.save(fornitore);
+    }
+
+    @Transactional
+    public void deleteFornitore (Long id){
+        Fornitore f = this.fornitoreRepository.findById(id).get();
+
+        this.fornitoreRepository.deleteById(this.rimuoviProdotti(id));
+    }
+
+    /* funzione di supporto che rimuove il fornitore da i prodotti */
+    private Long rimuoviProdotti(Long id){
+        Set<Prodotto> prodotti = this.fornitoreRepository.findById(id).get().getProdottiForniti();
+        for (Prodotto prodotto : prodotti) {
+            this.prodottoService.removeFornitore(prodotto.getId(), id);
+            this.prodottoRepository.save(prodotto);
+        }
+        this.fornitoreRepository.findById(id);
+        return id;
     }
 }

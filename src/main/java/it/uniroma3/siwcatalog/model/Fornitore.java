@@ -1,7 +1,5 @@
 package it.uniroma3.siwcatalog.model;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.Set;
