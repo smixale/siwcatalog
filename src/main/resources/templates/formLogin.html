@@ -2,35 +2,57 @@
 <html>
     <head>
         <title>form login</title>
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+		<link rel="stylesheet" href="/css/stileFormLogin.css">
     </head>
 
     <body>
-        <h1>form login</h1>
+		<header>
+            <a href="/"><span id="logo">SIWCATALOG</span></a>
+
+            <a class="campoHeader" href="/listaFornitori">fornitori</a>
+
+            <a class="campoHeader" href="/listaProdotti">prodotti</a>
+
+            <a class="campoHeader" href="/formNewFornitore">aggiungi un fornitore</a>
+
+            <a class="campoHeader" href="/formNewProdotto">aggiungi un prodotto</a>
+
+            <a class="campoHeader" th:unless="${userDetails}" href="/login">Login</a>
+
+            <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
+        </header>
         
         <div class="login">
-            <form th:action="@{/login}" method="POST">
-				<h1>Sign In</h1>
-				<div class="input-box">
+
+            <form class="formLogin" th:action="@{/login}" method="POST">
+				<h1>Login</h1>
+
+				<div class="campoForm">
 					<input name="username" type="text" placeholder="Username" required/>
 					<i class='bx bxs-user'></i>
 				</div>
-				<div class="input-box">
+
+				<div class="campoForm">
 					<input name="password" type="password" placeholder="Password" required />
 					<i class='bx bxs-lock-alt' ></i>
 				</div>
+
 				<div class="remember">
-					<label><input type="checkbox">Remember me</label>
+					<span><input type="checkbox">Remember me</span>
 				</div>
-				<div th:if="${param.error != null}" class="wrong">
+				<div th:if="${param.error != null}" class="errore">
 					<i class='bx bxs-error'></i>
 					<span>Username o password errati, riprova</span>
 				</div>
 				
-				<button type="submit">Login</button>
-				<div class="register-link">
-					<p>Non sei ancora registrato? <a th:href="@{/register}">Register</a></p>
+				<button id="submit" type="submit">Login</button>
+
+				<div class="registrazione">
+					<p>Non sei ancora registrato? <a th:href="@{/register}">Registrati ora</a></p>
 				</div>
 			</form>
+
         </div>
     </body>
 </html>

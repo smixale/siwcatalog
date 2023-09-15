@@ -6,33 +6,26 @@
     </head>
 
     <body>
-
         <header>
-            <div class="login">
-                <p th:unless="${userDetails}"><a href="/login">Login</a></p>
-                <p th:if="${userDetails}"><a href="/logout">Logout</a></p>
-            </div>
+            <a href="/"><span id="logo">SIWCATALOG</span></a>
 
-            <div class="liste">
-                <a href="/listaFornitori">fornitori</a>
-                <a href="/listaProdotti">prodotti</a>
-            </div>
+            <a class="campoHeader" href="/listaFornitori">fornitori</a>
 
-            
-            <div class="fornitori">
-                <a href="/formNewFornitore">aggiungi un fornitore</a>
-                <a href="/formNewProdotto">aggiungi un prodotto</a>
-            </div>
+            <a class="campoHeader" href="/listaProdotti">prodotti</a>
+
+            <a class="campoHeader" href="/formNewFornitore">aggiungi un fornitore</a>
+
+            <a class="campoHeader" href="/formNewProdotto">aggiungi un prodotto</a>
+
+            <a class="campoHeader" th:unless="${userDetails}" href="/login">Login</a>
+
+            <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
         </header>
-        <div class="header">
 
 
 
+    </body>
 
-
-        </body>
-        </div>
-
-        <h1>siwcatalog</h1>
+        
 
 </html>
