@@ -22,15 +22,18 @@
             <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
         </header>
 
-        
-        <div class="prodotti" th:each="prodotto : ${prodotti}">
-            <div class="card">  
-                <img th:src="@{'/immagineProdotto/' + ${prodotto.immagineProdotto.id}}">
-                <div class="informazioni">
-                    <span class="nome" th:text="${prodotto.nomeProdotto}"></span>
-                    <span class="prezzo" th:text="${prodotto.prezzo}"></span>
-                    <a th:href="@{'/prodotto' + '/' + ${prodotto.id}}">dettagli prodotto</a>
-                    <a th:href="@{'/deleteProdotto/' + ${prodotto.id}}">Rimuovi</a>    
+        <p><br></p>
+
+        <div class="contenitore">
+            <div class="prodotti" th:each="prodotto : ${prodotti}">
+                <div class="card">  
+                    <img th:src="@{'/immagineProdotto/' + ${prodotto.immagineProdotto.id}}">
+                    <div class="informazioni">
+                        <span class="nome" th:text="${prodotto.nomeProdotto}"></span>
+                        <span class="prezzo" th:text="${prodotto.prezzo}"></span>
+                        <a th:href="@{'/prodotto' + '/' + ${prodotto.id}}">dettagli prodotto</a>
+                        <a th:href="@{'/deleteProdotto/' + ${prodotto.id}}">Rimuovi</a>    
+                    </div>
                 </div>
             </div>
         </div>

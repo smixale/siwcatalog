@@ -22,10 +22,12 @@
             <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
         </header>
 
+        <p><br></p>
+
         <div class="benvenuto">
             <h1>Benvenuto su siwcatalog</h1>
             <span>Complimenti <span th:text="${user.getName()}"></span><span> sei ufficialmente registrato su siwcatalog</span></span>
-            <span>Ora puoi effettuare il login per usufruire completamente del sito</span>
+            <span>ora puoi effettuare il login per usufruire completamente del sito</span>
             
             <div class="pulsanti">
                 <span>Torna alla homepage <a href="/login">login</a></span>

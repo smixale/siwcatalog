@@ -23,6 +23,8 @@
             <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
         </header>
 
+        <p><br></p>
+
         <div class="form">
             <form class="formProdotto" th:action="@{/prodotto}" method="POST" th:object="${prodotto}" enctype="multipart/form-data">
                 <h1>Aggiungi un nuovo prodotto</h1>

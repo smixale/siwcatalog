@@ -23,6 +23,8 @@
             <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
         </header>
 
+        <p><br></p>
+
         <div class="form">
 
             <form class="formFornitore" th:action="@{/fornitore}" method="POST" enctype="multipart/form-data" th:object="${fornitore}">
