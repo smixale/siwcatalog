@@ -2,27 +2,37 @@
 <html>
     <head>
         <title>siwcatalog index</title>
-
+        <link rel="stylesheet" href="/css/stile.css">
     </head>
 
     <body>
-        <h1>siwcatalog index</h1>
 
-        <p>funziona :)</p>
+        <header>
+            <div class="login">
+                <p th:unless="${userDetails}"><a href="/login">Login</a></p>
+                <p th:if="${userDetails}"><a href="/logout">Logout</a></p>
+            </div>
 
-        <div class="login">
-            <p th:unless="${userDetails}"><a href="/login">Login</a></p>
-            <p th:if="${userDetails}"><a href="/logout">Logout</a></p>
+            <div class="liste">
+                <a href="/listaFornitori">fornitori</a>
+                <a href="/listaProdotti">prodotti</a>
+            </div>
+
+            
+            <div class="fornitori">
+                <a href="/formNewFornitore">aggiungi un fornitore</a>
+                <a href="/formNewProdotto">aggiungi un prodotto</a>
+            </div>
+        </header>
+        <div class="header">
+
+
+
+
+
+        </body>
         </div>
 
-        <div class="fornitori">
-            <a href="/formNewFornitore">aggiungi un fornitore</a>
-            <a href="/listaFornitori">lista fornitori</a>
-        </div>
+        <h1>siwcatalog</h1>
 
-        <div class="prodotti">
-            <a href="/formNewProdotto">aggiungi un prodotto</a>
-            <a href="/listaProdotti">lista prodotti</a>
-        </div>
-    </body>
 </html>

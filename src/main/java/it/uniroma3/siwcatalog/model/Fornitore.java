@@ -56,10 +56,19 @@ public class Fornitore {
         this.emailFornitore = emailFornitore;
     }
 
+    public Set<Prodotto> getProdottiForniti() {
+        return prodottiForniti;
+    }
+
+    public void setProdottiForniti(Set<Prodotto> prodottiForniti) {
+        this.prodottiForniti = prodottiForniti;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((nomeFornitore == null) ? 0 : nomeFornitore.hashCode());
         result = prime * result + ((emailFornitore == null) ? 0 : emailFornitore.hashCode());
         return result;
@@ -74,6 +83,11 @@ public class Fornitore {
         if (getClass() != obj.getClass())
             return false;
         Fornitore other = (Fornitore) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
         if (nomeFornitore == null) {
             if (other.nomeFornitore != null)
                 return false;
@@ -87,13 +101,4 @@ public class Fornitore {
         return true;
     }
 
-    public Set<Prodotto> getProdottiForniti() {
-        return prodottiForniti;
-    }
-
-    public void setProdottiForniti(Set<Prodotto> prodottiForniti) {
-        this.prodottiForniti = prodottiForniti;
-    }
-
-    
 }

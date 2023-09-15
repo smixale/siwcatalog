@@ -84,10 +84,20 @@ public class Prodotto {
         this.prezzo = prezzo;
     }
 
+    public Set<Commento> getCommenti() {
+        return commenti;
+    }
+
+    public void setCommenti(Set<Commento> commenti) {
+        this.commenti = commenti;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((nomeProdotto == null) ? 0 : nomeProdotto.hashCode());
         result = prime * result + ((prezzo == null) ? 0 : prezzo.hashCode());
         return result;
     }
@@ -101,6 +111,16 @@ public class Prodotto {
         if (getClass() != obj.getClass())
             return false;
         Prodotto other = (Prodotto) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (nomeProdotto == null) {
+            if (other.nomeProdotto != null)
+                return false;
+        } else if (!nomeProdotto.equals(other.nomeProdotto))
+            return false;
         if (prezzo == null) {
             if (other.prezzo != null)
                 return false;
@@ -109,12 +129,5 @@ public class Prodotto {
         return true;
     }
 
-    public Set<Commento> getCommenti() {
-        return commenti;
-    }
-
-    public void setCommenti(Set<Commento> commenti) {
-        this.commenti = commenti;
-    }
-
+    
 }
