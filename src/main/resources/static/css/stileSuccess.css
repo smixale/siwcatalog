@@ -42,3 +42,41 @@ header a{
 body{
     background-color: rgba(38, 46, 50, 0.8);
 }
+
+.benvenuto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.benvenuto h1{
+    color: white;
+    text-align: center;
+    font-size: 50px;
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+
+.benvenuto span{
+    color: white;
+    font-size: 25px;
+    text-align: center;
+}
+
+.benvenuto .pulsanti{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pulsanti span{
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.pulsanti a{
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}

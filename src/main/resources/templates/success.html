@@ -2,12 +2,35 @@
 <html>
     <head>
         <title>success</title>
+        <link rel="stylesheet" href="/css/stileSuccess.css">
     </head>
 
     <body>
-        <h1>Benvenuto su siwcatalog</h1>
-        <h2>effettua subito il login per usufruire a pieno della piattaforma</h2>
-        <a href="/">index</a>
-        <a href="/login">login</a>
+        <header>
+            <a href="/"><span id="logo">SIWCATALOG</span></a>
+
+            <a class="campoHeader" href="/listaFornitori">fornitori</a>
+
+            <a class="campoHeader" href="/listaProdotti">prodotti</a>
+
+            <a class="campoHeader" href="/formNewFornitore">aggiungi un fornitore</a>
+
+            <a class="campoHeader" href="/formNewProdotto">aggiungi un prodotto</a>
+
+            <a class="campoHeader" th:unless="${userDetails}" href="/login">Login</a>
+
+            <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
+        </header>
+
+        <div class="benvenuto">
+            <h1>Benvenuto su siwcatalog</h1>
+            <span>Complimenti <span th:text="${user.getName()}"></span><span> sei ufficialmente registrato su siwcatalog</span></span>
+            <span>Ora puoi effettuare il login per usufruire completamente del sito</span>
+            
+            <div class="pulsanti">
+                <span>Torna alla homepage <a href="/login">login</a></span>
+                <span>Effettua subito il login <a href="/">Home</a></span>
+            </div>
+        </div>
     </body>
 </html>
