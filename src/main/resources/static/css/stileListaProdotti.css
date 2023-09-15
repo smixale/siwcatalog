@@ -44,40 +44,38 @@ body{
     background-color: rgba(38, 46, 50, 0.8);
 }
 
-.benvenuto{
+.contenitore{
+    margin-top: 1000px;
+}
+
+.prodotti{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card{
+    width: 40%;
+    background-color: green;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card img{
+    height: auto;
+}
+
+.informazioni{
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.benvenuto h1{
+.informazioni .nome{
     color: white;
-    text-align: center;
-    font-size: 50px;
-    padding-top: 30px;
-    margin-bottom: 30px;
-}
-
-.benvenuto span{
-    color: white;
-    font-size: 25px;
-    text-align: center;
-}
-
-.benvenuto .pulsanti{
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.pulsanti span{
-    font-size: 16px;
-    margin-bottom: 20px;
-}
-
-.pulsanti a{
+    font-size: 26px;
     font-weight: bold;
-    text-decoration: none;
-    color: white;
+    padding-right: 30px;
 }
