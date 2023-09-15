@@ -2,29 +2,50 @@
 <html>
     <head>
         <title>form new fornitore</title>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="/css/stileFormNewFornitore.css">
     </head>
 
     <body>
-        <h1>aggiungi fornitore</h1>
-        <form th:action="@{/fornitore}" method="POST" enctype="multipart/form-data" th:object="${fornitore}" class="form-post">
-            <div class="campiform">
-                <input type="text" th:field="${fornitore.nomeFornitore}" placeholder="Nome" required/>
-            </div>
+        <header>
+            <a href="/"><span id="logo">SIWCATALOG</span></a>
 
-            <div class="campiform">
-                <input type="email" th:field="${fornitore.emailFornitore}" placeholder="Email" required/>
-                
-            </div>
+            <a class="campoHeader" href="/listaFornitori">fornitori</a>
 
-            <div class="campiform">
-                <input type="text" th:field="${fornitore.indirizzo}" placeholder="indirizzo"/>
-                
-            </div>
-                
-            <div class="submit">
-                <button type="submit">conferma</button>
-            </div>
-        </form>
+            <a class="campoHeader" href="/listaProdotti">prodotti</a>
+
+            <a class="campoHeader" href="/formNewFornitore">aggiungi un fornitore</a>
+
+            <a class="campoHeader" href="/formNewProdotto">aggiungi un prodotto</a>
+
+            <a class="campoHeader" th:unless="${userDetails}" href="/login">Login</a>
+
+            <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
+        </header>
+
+        <div class="form">
+
+            <form class="formFornitore" th:action="@{/fornitore}" method="POST" enctype="multipart/form-data" th:object="${fornitore}">
+                <h1>Aggiungi un nuovo fornitore</h1>
+
+                <div class="campoForm">
+                    <input type="text" th:field="${fornitore.nomeFornitore}" placeholder="Nome" required/>
+                </div>
+
+                <div class="campoForm">
+                    <input type="email" th:field="${fornitore.emailFornitore}" placeholder="Email" required/>
+                </div>
+
+                <div class="campoForm">
+                    <input type="text" th:field="${fornitore.indirizzo}" placeholder="indirizzo"/>
+                </div>
+                    
+                <div class="submit">
+                    <button type="submit">conferma</button>
+                </div>
+            </form>
+
+        </div>
 
     </body>
 </html>
