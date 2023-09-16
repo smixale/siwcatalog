@@ -44,9 +44,14 @@ body{
     background-color: rgba(38, 46, 50, 0.8);
 }
 
+
+
+
+
 .contenitore{
     margin-top: 70px;
-
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .prodotti{
@@ -57,18 +62,22 @@ body{
 }
 
 .card{
-    width: 40%;
+    max-width: 240px;
+    min-width: 240px;
     background-color: green;
     margin-top: 20px;
     display: flex;
-    justify-content: space-between;
-    padding: 20px 80px 20px 20px;
+    justify-content: center;
+    flex-direction: column;
     border-radius: 20px;
+    margin: 20px 50px;
+    padding: 15px 15px;
 }
 
 .card img{
     height: auto;
     border-radius: 20px;
+    margin-bottom: 10px;
 }
 
 .informazioni{
@@ -79,12 +88,17 @@ body{
 
 .informazioni .nome{
     color: white;
-    font-size: 26px;
+    font-size: 30px;
     font-weight: bold;
     padding-right: 30px;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 .informazioni .prezzo{
     margin-bottom: 10px;
+}
+
+.informazioni .prezzo{
+    color: white;
 }

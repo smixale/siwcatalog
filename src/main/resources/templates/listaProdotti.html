@@ -30,9 +30,16 @@
                     <img th:src="@{'/immagineProdotto/' + ${prodotto.immagineProdotto.id}}">
                     <div class="informazioni">
                         <span class="nome" th:text="${prodotto.nomeProdotto}"></span>
-                        <span class="prezzo" th:text="${prodotto.prezzo}"></span>
+                        <p class="prezzo" th:if="${!prodotto.fornitori.isEmpty()}">
+                            <span>prezzo: </span>
+                            <span th:text="${prodotto.prezzo}"></span>
+                            <span>€</span>
+                        </p>
+                        <p class="prezzo" th:if="${prodotto.fornitori.isEmpty()}">
+                            <span>Prodotto attualmente non disponibile</span>
+                        </p>
                         <a th:href="@{'/prodotto' + '/' + ${prodotto.id}}">dettagli prodotto</a>
-                        <a th:href="@{'/deleteProdotto/' + ${prodotto.id}}">Rimuovi</a>    
+                        <a th:href="@{'/deleteProdotto/' + ${prodotto.id}}">Rimuovi</a>  
                     </div>
                 </div>
             </div>
