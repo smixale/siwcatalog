@@ -6,57 +6,104 @@
     </head>
 
     <body>
-        <h1>Prodotto</h1>
-        <div th:if="${prodotto.immagineProdotto==null}">nessun immagine disponibile</div>
-        <div class="immagine"><img th:src="@{'/immagineProdotto/' + ${prodotto.immagineProdotto.id}}"></div>
-        <div class="informazioni">
-            
-            <span>Nome:</span>
-            <span th:text="${prodotto.nomeProdotto}"></span>
-            <span>prezzo:</span>
-            <span th:text="${prodotto.prezzo}"></span>
-            <span>Descrizione:</span>
-            <span th:text="${prodotto.descrizione}"></span>
-        </div>
+        <header>
+            <a href="/"><span id="logo">SIWCATALOG</span></a>
 
-        <a th:href="@{'/formUpdateProdotto/' + ${prodotto.id}}">aggiungi fornitori al prodotto</a>
+            <a class="campoHeader" href="/listaFornitori">fornitori</a>
 
-        <div class="elencoFornitori" th:each="fornitore : ${prodotto.getFornitori()}">
-            <span>Nome: </span>
-            <span th:text="${fornitore.nomeFornitore}"></span>
-        </div>
+            <a class="campoHeader" href="/listaProdotti">prodotti</a>
+
+            <a class="campoHeader" href="/formNewFornitore">aggiungi un fornitore</a>
+
+            <a class="campoHeader" href="/formNewProdotto">aggiungi un prodotto</a>
+
+            <a class="campoHeader" th:unless="${userDetails}" href="/login">Login</a>
+
+            <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
+        </header>
 
         <p><br></p>
 
-        <div class="verificaCommento" th:if="${commentato}">
-            <span>Lascia il tuo commento per il prodotto</span>
-            <form th:action="@{'/addCommento/' + ${prodotto.id}}" method="POST" th:object="${commento}" enctype="multipart/form-data"  class="form-commento">
-    
-                <div class="campoForm">
-                    <input type="text" th:field="${commento.titolo}" placeholder="Titolo" required/>
-                </div>
-                <div class="campoForm">
-                    <input type="text" th:field="${commento.testo}" placeholder="Lascia qui il tuo commento" value="proviamo così" required/>
-                </div>
-                <div class="submit">
-                    <button type="submit">Invia</button>
-                </div>
-            </form>
-        </div>
+        <div class="content">
+            <div class="immagineNomePrezzo">
+                <div class="immagine"><img th:src="@{'/immagineProdotto/' + ${prodotto.immagineProdotto.id}}"></div>
+                <div class="nomePrezzo">
+                    <span class="nome" th:text="${prodotto.nomeProdotto}"></span>
 
-        <p><br></p>
-
-        <span th:if="${prodotto.getCommenti().isEmpty()}">Sembra non ci siano commenti per questo prodotto, sii il primo a lasciarne uno!</span>
-        <div class="commenti" th:each="commento : ${prodotto.getCommenti()}">
-            <div class="commento">
-                <span th:if="${commento.autore==null}">Autore sconosciuto</span>
-                <span th:if="${commento.autore!=null}">Autore: <span th:text="${commento.autore}"></span></span>
-                <span th:text="${commento.titolo}"></span>
-                <span th:text="${commento.testo}"></span>
-                <a th:if="${role!=null && role=='ADMIN'}" th:href="@{'/removeCommento/' + ${prodotto.id} + '/' + ${commento.id}}">Rimuovi</a>
-                <span th:if="${commento.autore==user.getUsername()}"><a th:href="@{'/removeCommento/' + ${prodotto.id} + '/' + ${commento.id}}">Modifica</a></span>
-                <p></p>
+                    <div class="prezzo" th:if="${!prodotto.fornitori.isEmpty()}">
+                        <span>prezzo:</span>
+                        <span th:text="${prodotto.prezzo}"></span>
+                        <span>€</span>
+                    </div>
+                    <div class="prezzo" th:if="${prodotto.fornitori.isEmpty()}">
+                        <span>Prodotto attualmente non disponibile</span>
+                    </div>
+                </div>
             </div>
+
+            <div class="descrizione">
+                <span>Descrizione:</span>
+                <span th:text="${prodotto.descrizione}"></span>
+            </div>
+    
+            <div class="fornitori">
+                <a class="modificaFornitori" th:href="@{'/formUpdateProdotto/' + ${prodotto.id}}">Modifica fornitori</a>
+
+                <span th:if="${prodotto.fornitori.isEmpty()}">Sembra non ci siano fornitori per questo prodotto</span>
+                <span th:if="${!prodotto.fornitori.isEmpty()}">Fornitori:</span>
+
+                <div class="elencoFornitori" th:each="fornitore : ${prodotto.getFornitori()}">
+                    <span>Fornitore: </span>
+                    <a th:href="@{'/fornitore' + '/' + ${fornitore.id}}"><span th:text="${fornitore.nomeFornitore}"></span></a>
+                </div>
+            </div>
+    
+            <div class="form">
+                <div class="verificaCommento" th:if="${commentato }">
+                    <span>Lascia il tuo commento per il prodotto</span>
+                    <form th:action="@{'/addCommento/' + ${prodotto.id}}" method="POST" th:object="${commento}" enctype="multipart/form-data"  class="form-commento">
+            
+                        <div class="campoForm">
+                            <input type="text" th:field="${commento.titolo}" placeholder="Titolo" required/>
+                        </div>
+                        <div class="campoForm">
+                            <textarea name="testo" maxlength="255" placeholder="Lascia qui il tuo commento" th:field="${commento.testo}" required></textarea>
+                        </div>
+                        <div class="submit">
+                            <button type="submit">Pubblica</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="commenti">
+
+                <span class="nienteCommenti" th:if="${prodotto.getCommenti().isEmpty()}">Sembra non ci siano commenti per questo prodotto, sii il primo a lasciarne uno!</span>
+                <span class="nienteCommenti" th:if="${!prodotto.getCommenti().isEmpty()}">Commenti:</span>
+
+
+                <div class="contenitoreCommenti">
+
+                    <div class="listaCommenti" th:each="commento : ${prodotto.getCommenti()}">
+                        <div class="commento">
+                            <div class="nomeAutorePulsante">
+                                <div class="titoloAutore">
+                                    <span class="titolo" th:text="${commento.titolo}"></span>
+                                    <span class="autore" th:if="${commento.autore!=null}">Di: <span th:text="${commento.autore}"></span></span>
+                                </div>
+                                <a th:if="${role!=null && role=='ADMIN' || commento.autore==user.getUsername()}" th:href="@{'/removeCommento/' + ${prodotto.id} + '/' + ${commento.id}}">Rimuovi</a>
+                            </div>
+                            <div class="testo">
+                                <span th:text="${commento.testo}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+
         </div>
+        
     </body>
 </html>

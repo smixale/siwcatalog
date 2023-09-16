@@ -1,0 +1,230 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+header{
+    width: 100%;
+    height: 75px;
+    padding: 1% 25px;
+    padding-right: 60px;
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(gray,darkgray);
+    opacity: 80%;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+    position: fixed;
+}
+
+header a{
+    text-decoration: none;
+    color: white;
+}
+
+#logo{
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    color: black;
+}
+
+.campoHeader{
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.campoHeader:hover{
+    color: black;
+}
+
+body{
+    background-color: rgba(38, 46, 50, 0.8);
+    
+}
+
+.content{
+    margin-top: 80px;
+    padding: 0px 20px;
+}
+
+.immagineNomePrezzo{
+    display: flex;
+
+}
+
+.immagineNomePrezzo .nome{
+    text-align: center;
+    font-size: 45px;
+    color: white;
+    font-weight: bold;
+
+}
+
+.nomePrezzo{
+    margin-left: 30px;
+    font-size: 15px;
+}
+
+.prezzo{
+    margin-top: 20px;
+    color: white;
+}
+
+.descrizione{
+    color: white;
+    margin-top: 20px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 10px;
+}
+
+.fornitori{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.descrizione span{
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+
+.fornitori .modificaFornitori {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.fornitori span{
+    color: white;
+    font-size: 15px;
+}
+
+.fornitori .elencoFornitori{
+    margin-top: 5px;
+}
+
+.form{
+    display: flex;
+}
+
+.verificaCommento{
+    margin-top: 40px;
+    background-color: transparent;
+    padding: 20px 20px;
+    border-radius: 20px;
+    width: 40%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.verificaCommento span{
+    color: white;
+    font-size: 20px;
+}
+
+.verificaCommento input{
+    margin-top: 10px;
+    width: 50%;
+    height: 20px;
+    background: transparent;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+    color: white;
+    padding: 20px 45px 20px 20px; 
+}
+
+.verificaCommento textarea{
+    margin-top: 10px;
+    width: 100%;
+    height: 150px;
+    background: transparent;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+    color: white;
+    padding: 20px 45px 20px 20px; 
+    resize: none;
+}
+
+.verificaCommento input::placeholder{
+    color: white;
+}
+
+.verificaCommento textarea::placeholder{
+    color: white;
+}
+
+.verificaCommento button{
+    margin-top: 10px;
+    cursor: pointer;
+    width: 10%;
+    height: 25px;
+    background: white;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    border-radius: 20px;
+}
+
+.commenti{
+    margin-top: 30px;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.contenitoreCommenti{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.listaCommenti{
+    width: 40%;
+}
+
+.commento{
+    margin-bottom: 30px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 20px 20px;
+}
+
+.nomeAutorePulsante{
+    display: flex;
+    justify-content: space-between;
+}
+
+.nomeAutorePulsante a{
+    text-decoration: none;
+    color: red;
+    font-size: 12px;
+    border-radius: 30px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.titolo{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.autore{
+    font-size: 15px;
+}
+
+.testo{
+    margin-top: 10px;
+    font-size: 17px;
+    word-wrap: break-word;
+}

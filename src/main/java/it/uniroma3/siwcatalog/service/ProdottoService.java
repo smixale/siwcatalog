@@ -42,7 +42,7 @@ public class ProdottoService {
         Immagine immagineProdotto = new Immagine(immagine.getBytes());
         this.immagineRepository.save(immagineProdotto);
         prodotto.setImmagineProdotto(immagineProdotto);
-        if (prodotto.getDescrizione()==null) {
+        if (prodotto.getDescrizione().isEmpty()) {
             prodotto.setDescrizione("Nessuna descrizione...");
         }
         return this.prodottoRepository.save(prodotto);
