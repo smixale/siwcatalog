@@ -46,6 +46,7 @@ body{
 
 .contenitore{
     margin-top: 70px;
+
 }
 
 .prodotti{
@@ -61,10 +62,13 @@ body{
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
+    padding: 20px 80px 20px 20px;
+    border-radius: 20px;
 }
 
 .card img{
     height: auto;
+    border-radius: 20px;
 }
 
 .informazioni{
@@ -78,4 +82,9 @@ body{
     font-size: 26px;
     font-weight: bold;
     padding-right: 30px;
+    margin-bottom: 10px;
+}
+
+.informazioni .prezzo{
+    margin-bottom: 10px;
 }
