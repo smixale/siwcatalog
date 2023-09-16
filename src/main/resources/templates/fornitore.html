@@ -2,26 +2,60 @@
 <html>
     <head>
         <title>fornitore</title>
+        <link rel="stylesheet" href="/css/stileFornitore.css">
     </head>
 
     <body>
-        <h1><span th:text="${fornitore.nomeFornitore}"></span></h1>
+        <header>
+            <a href="/"><span id="logo">SIWCATALOG</span></a>
 
-        <div >  
-            
-            <span>Email: </span>
-            <span th:text="${fornitore.emailFornitore}"></span>
-            <span>Indirizzo: </span>
-            <span th:text="${fornitore.indirizzo}"></span>
+            <a class="campoHeader" href="/listaFornitori">fornitori</a>
 
-            <a th:href="@{'/formUpdateFornitore/' + ${fornitore.id}}">aggiungi prodotti al fornitore</a>
+            <a class="campoHeader" href="/listaProdotti">prodotti</a>
 
-            <div th:each="prodotto : ${fornitore.prodottiForniti}">
-                <div >  
-                    <span>Nome:</span>
-                    <span th:text="${prodotto.nomeProdotto}"></span>
+            <a class="campoHeader" href="/formNewFornitore">aggiungi un fornitore</a>
+
+            <a class="campoHeader" href="/formNewProdotto">aggiungi un prodotto</a>
+
+            <a class="campoHeader" th:unless="${userDetails}" href="/login">Login</a>
+
+            <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
+        </header>
+
+        <p><br></p>
+
+        <div class="content">
+            <h1><span th:text="${fornitore.nomeFornitore}"></span></h1>
+    
+            <div class="informazioni"> 
+                <div class="dati">
+                    <p class="email">
+                        <span>Email: </span>
+                        <span th:text="${fornitore.emailFornitore}"></span>
+                    </p>
+    
+                    <p class="indirizzo">
+                        <span>Indirizzo: </span>
+                        <span th:text="${fornitore.indirizzo}"></span>
+                    </p>
                 </div>
+                
+                <div class="prodotti">
+                    <a class="aggiungiProdotto" th:href="@{'/formUpdateFornitore/' + ${fornitore.id}}">Modifica prodotti forniti</a>
+
+                    <span th:if="${fornitore.prodottiForniti.isEmpty()}">Nessun prodotto fornito</span>
+                    <span th:if="${!fornitore.prodottiForniti.isEmpty()}">Prodotti forniti:</span>
+
+                    <div th:each="prodotto : ${fornitore.prodottiForniti}">
+                        <div class="prodotto">  
+                            <span>Nome:</span>
+                            <a th:href="@{'/prodotto' + '/' + ${prodotto.id}}"><span th:text="${prodotto.nomeProdotto}"></span></a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
+
     </body>
 </html>

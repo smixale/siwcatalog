@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+
+header{
+    width: 100%;
+    height: 75px;
+    padding: 1% 25px;
+    padding-right: 60px;
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(gray,darkgray);
+    opacity: 80%;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.5);
+    position: fixed;
+}
+
+header a{
+    text-decoration: none;
+    color: white;
+}
+
+#logo{
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    color: black;
+}
+
+.campoHeader{
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.campoHeader:hover{
+    color: black;
+}
+
+body{
+    background-color: rgba(38, 46, 50, 0.8);
+}
+
+
+
+
+
+.content{
+    margin-top: 80px;
+    padding: 0px 100px;
+}
+
+.content h1{
+    text-align: center;
+    color: white;
+    font-size: 45px;
+}
+
+.informazioni{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.content p{
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.prodotti{
+    display: flex;
+    flex-direction: column;
+}
+
+.content .aggiungiProdotto{
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.prodotti span{
+    color: white;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.prodotto span{
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.prodotto a{
+    margin-top: 15px;
+    text-decoration: none;
+}
