@@ -44,59 +44,42 @@ body{
     background-color: rgba(38, 46, 50, 0.8);
 }
 
+h1{
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 80px;
+}
 
-
-
+h1 a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
 
 .content{
-    margin-top: 80px;
-    padding: 0px 20%;
-}
-
-.content h1{
-    text-align: center;
-    color: white;
-    font-size: 45px;
-}
-
-.informazioni{
+    margin-top: 50px;
     display: flex;
     justify-content: space-between;
-    margin-top: 50px;
+    padding: 20px 35%;
+    color: white;
 }
 
-.content p{
-    color: white;
+.content .titolo{
     font-size: 20px;
-    margin-top: 20px;
-}
-
-.prodotti{
-    display: flex;
-    flex-direction: column;
-}
-
-.content .aggiungiProdotto{
-    font-weight: bold;
     color: white;
+}
+
+.content a{
     text-decoration: none;
-    font-size: 20px;
-    margin-top: 20px;
-}
-
-.prodotti span{
     color: white;
-    margin-top: 20px;
-    font-size: 20px;
-}
-
-.prodotto span{
-    margin-top: 10px;
     font-size: 15px;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
-.prodotto a{
-    margin-top: 15px;
-    text-decoration: none;
-    font-weight: bold;
+
+.liste{
+    margin-top: 10px;
 }
