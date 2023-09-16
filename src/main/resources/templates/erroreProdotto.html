@@ -2,11 +2,31 @@
 <html>
     <head>
         <title>errore</title>
+        <link rel="stylesheet" href="/css/stileErrore.css">
     </head>
 
     <body>
-        <h1>errore prodotto</h1>
-        <p></p>
-        <span th:text="${messaggio}"></span>
+        <header>
+            <a href="/"><span id="logo">SIWCATALOG</span></a>
+
+            <a class="campoHeader" href="/listaFornitori">fornitori</a>
+
+            <a class="campoHeader" href="/listaProdotti">prodotti</a>
+
+            <a class="campoHeader" href="/formNewFornitore">aggiungi un fornitore</a>
+
+            <a class="campoHeader" href="/formNewProdotto">aggiungi un prodotto</a>
+
+            <a class="campoHeader" th:unless="${userDetails}" href="/login">Login</a>
+
+            <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
+        </header>
+
+        <p><br></p>
+
+        <div class="contenitore">
+            <h1>Errore di inserimento</h1>
+            <span th:text="${messaggio}"></span>
+        </div>
     </body>
 </html>
