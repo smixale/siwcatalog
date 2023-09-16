@@ -27,7 +27,9 @@
         <div class="contenitore">
             <div class="prodotti" th:each="prodotto : ${prodotti}">
                 <div class="card">  
+
                     <img th:src="@{'/immagineProdotto/' + ${prodotto.immagineProdotto.id}}">
+
                     <div class="informazioni">
                         <span class="nome" th:text="${prodotto.nomeProdotto}"></span>
                         <p class="prezzo" th:if="${!prodotto.fornitori.isEmpty()}">
@@ -38,9 +40,11 @@
                         <p class="prezzo" th:if="${prodotto.fornitori.isEmpty()}">
                             <span>Prodotto non disponibile</span>
                         </p>
+                        
                         <a class="dettagli" th:href="@{'/prodotto' + '/' + ${prodotto.id}}">dettagli prodotto</a>
                         <a class="cancella" th:href="@{'/deleteProdotto/' + ${prodotto.id}}">Rimuovi</a>  
                     </div>
+
                 </div>
             </div>
         </div>

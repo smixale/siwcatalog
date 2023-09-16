@@ -2,20 +2,48 @@
 <html>
     <head>
         <title>lista fornitori</title>
+        <link rel="stylesheet" href="/css/stileListaFornitori.css">
     </head>
 
     <body>
-        <h1>lista fornitori</h1>
+        <header>
+            <a href="/"><span id="logo">SIWCATALOG</span></a>
 
-        <div th:each="fornitore : ${fornitori}" class="blog-post"  >
-            <div >  
-                <span th:text="${fornitore.nomeFornitore}"></span>
-                <span>Email: </span>
-                <span th:text="${fornitore.emailFornitore}"></span>
-                <span>Indirizzo: </span>
-                <span th:text="${fornitore.indirizzo}"></span>
-                <a th:href="@{'/fornitore' + '/' + ${fornitore.id}}">dettagli fornitore</a>    
-                <a th:href="@{'/deleteFornitore/' + ${fornitore.id}}">Rimuovi</a>
+            <a class="campoHeader" href="/listaFornitori">fornitori</a>
+
+            <a class="campoHeader" href="/listaProdotti">prodotti</a>
+
+            <a class="campoHeader" href="/formNewFornitore">aggiungi un fornitore</a>
+
+            <a class="campoHeader" href="/formNewProdotto">aggiungi un prodotto</a>
+
+            <a class="campoHeader" th:unless="${userDetails}" href="/login">Login</a>
+
+            <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
+        </header>
+
+        <p><br></p>
+
+        <div class="contenitore">
+            <div class="fornitori" th:each="fornitore : ${fornitori}" >
+                <div class="card">  
+
+                    <div class="informazioni">
+                        <span class="nome" th:text="${fornitore.nomeFornitore}"></span>
+                        <p class="email">
+                            <span>Email: </span>
+                            <span th:text="${fornitore.emailFornitore}"></span>
+                        </p>
+                        <p class="email">
+                            <span>Indirizzo: </span>
+                            <span th:text="${fornitore.indirizzo}"></span>
+                        </p>
+                    </div>
+
+                    <a class="dettagli" th:href="@{'/fornitore' + '/' + ${fornitore.id}}">dettagli fornitore</a>    
+                    <a class="cancella" th:href="@{'/deleteFornitore/' + ${fornitore.id}}">Rimuovi</a>
+
+                </div>
             </div>
         </div>
 

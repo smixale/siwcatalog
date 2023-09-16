@@ -30,7 +30,7 @@ public class FornitoreService {
 
     @Transactional
     public void creaFornitore(Fornitore fornitore){
-        if(fornitore.getIndirizzo()==null){
+        if(fornitore.getIndirizzo().isEmpty()){
             fornitore.setIndirizzo("indirizzo sconosciuto");
         }
         this.fornitoreRepository.save(fornitore);

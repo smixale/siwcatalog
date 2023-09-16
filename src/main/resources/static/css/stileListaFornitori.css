@@ -41,11 +41,8 @@ header a{
 }
 
 body{
-    
     background-color: rgba(38, 46, 50, 0.8);
 }
-
-
 
 
 
@@ -63,8 +60,9 @@ body{
 }
 
 .card{
-    max-width: 240px;
-    min-width: 240px;
+    max-width: 300px;
+    min-width: 300px;
+    background-color: green;
     margin-top: 20px;
     display: flex;
     justify-content: center;
@@ -73,20 +71,15 @@ body{
     margin: 20px 50px;
     padding: 15px 15px;
     background-color: gray;
-    border: 2px solid rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
     opacity: 80%;
-}
-
-.card img{
-    height: auto;
-    border-radius: 20px;
-    margin-bottom: 10px;
 }
 
 .informazioni{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    color: white;
 }
 
 .informazioni .nome{
@@ -95,15 +88,6 @@ body{
     font-weight: bold;
     padding-right: 30px;
     margin-bottom: 10px;
-    text-align: center;
-}
-
-.informazioni .prezzo{
-    margin-bottom: 10px;
-}
-
-.informazioni .prezzo{
-    color: white;
     text-align: center;
 }
 
@@ -123,3 +107,8 @@ body{
     color: red;
     margin-top: 10px;
 }
+
+.informazioni .email{
+    margin-top: 20px;
+}
+

@@ -16,7 +16,6 @@ import it.uniroma3.siwcatalog.model.Fornitore;
 import it.uniroma3.siwcatalog.service.FornitoreService;
 import it.uniroma3.siwcatalog.service.ProdottoService;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
