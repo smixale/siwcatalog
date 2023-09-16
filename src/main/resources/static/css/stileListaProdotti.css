@@ -41,6 +41,7 @@ header a{
 }
 
 body{
+    
     background-color: rgba(38, 46, 50, 0.8);
 }
 
@@ -101,4 +102,22 @@ body{
 
 .informazioni .prezzo{
     color: white;
+    text-align: center;
+}
+
+.contenitore a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.contenitore .dettagli{
+    margin-top: 50px;
+}
+
+.contenitore .cancella{
+    text-align: center;
+    color: red;
+    margin-top: 10px;
 }

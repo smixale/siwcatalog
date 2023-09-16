@@ -31,15 +31,15 @@
                     <div class="informazioni">
                         <span class="nome" th:text="${prodotto.nomeProdotto}"></span>
                         <p class="prezzo" th:if="${!prodotto.fornitori.isEmpty()}">
-                            <span>prezzo: </span>
+                            <span>Prezzo: </span>
                             <span th:text="${prodotto.prezzo}"></span>
                             <span>€</span>
                         </p>
                         <p class="prezzo" th:if="${prodotto.fornitori.isEmpty()}">
-                            <span>Prodotto attualmente non disponibile</span>
+                            <span>Prodotto non disponibile</span>
                         </p>
-                        <a th:href="@{'/prodotto' + '/' + ${prodotto.id}}">dettagli prodotto</a>
-                        <a th:href="@{'/deleteProdotto/' + ${prodotto.id}}">Rimuovi</a>  
+                        <a class="dettagli" th:href="@{'/prodotto' + '/' + ${prodotto.id}}">dettagli prodotto</a>
+                        <a class="cancella" th:href="@{'/deleteProdotto/' + ${prodotto.id}}">Rimuovi</a>  
                     </div>
                 </div>
             </div>
