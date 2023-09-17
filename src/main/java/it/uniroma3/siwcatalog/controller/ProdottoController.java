@@ -19,6 +19,10 @@ import it.uniroma3.siwcatalog.service.ProdottoService;
 import jakarta.validation.Valid;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 
 
@@ -57,7 +61,6 @@ public class ProdottoController {
             model.addAttribute("messaggio", "Attenzione questo prodotto e' già presente nel sistema");
             return "erroreProdotto.html";
         }
-        
     }
 
         /* mapping dall'index per la lista di tutti i prodotti */
@@ -119,5 +122,29 @@ public class ProdottoController {
         this.prodottoService.deleteProdotto(id);
         model.addAttribute("prodotti",  this.prodottoService.findAllProdotti());
         return "listaProdotti.html";
+    }
+
+    @GetMapping("/aggiornaProdotto/{id}")
+    public String getMethodName(Model model, @PathVariable("id") Long id)  {
+        model.addAttribute("vecchioProdotto", this.prodottoService.findProdottoById(id));
+        model.addAttribute("nuovoProdotto", new Prodotto());
+        return "formAggiornProdotto.html";
+    }
+    
+    @PostMapping("/aggiornaProdotto/{id}")
+    public String postMethodName(@Valid @ModelAttribute("nuovoProdotto") Prodotto nuovo, BindingResult bindingResult, Model model, @ModelAttribute("file") MultipartFile immagine, @PathVariable("id") Long id) throws IOException {
+        
+        this.prodottoValidator.validate(nuovo, bindingResult);
+
+        if (!bindingResult.hasErrors()) {
+            model.addAttribute("prodotto", this.prodottoService.aggiornaProdotto(id, nuovo.getNomeProdotto(),nuovo.getPrezzo(),nuovo.getDescrizione(), immagine));
+            model.addAttribute("commentato", this.prodottoService.commentato(id));
+            model.addAttribute("user", this.globalController.getUser());
+            model.addAttribute("commento", new Commento());
+            return "prodotto.html";
+        }else{
+            model.addAttribute("messaggio", "Dati inseriti non validi");
+            return "erroreProdotto.html";
+        }
     }
 }

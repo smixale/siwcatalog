@@ -153,4 +153,15 @@ public class ProdottoService {
         this.fornitoreRepository.findById(id);
         return id;
     }
+
+    public Prodotto aggiornaProdotto (Long vecchioId,String nome, Float prezzo, String descrizione, MultipartFile immagine) throws IOException{
+        
+        Prodotto vecchio = this.prodottoRepository.findById(vecchioId).get();
+
+        vecchio.setNomeProdotto(nome);
+        vecchio.setPrezzo(prezzo);
+        vecchio.setDescrizione(descrizione);
+
+        return this.creaProdotto(vecchio, immagine);
+    }
 }

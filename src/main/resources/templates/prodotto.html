@@ -35,8 +35,13 @@
                         <span th:text="${prodotto.prezzo}"></span>
                         <span>€</span>
                     </div>
+
                     <div class="prezzo" th:if="${prodotto.fornitori.isEmpty()}">
                         <span>Prodotto attualmente non disponibile</span>
+                    </div>
+
+                    <div class="modifica">
+                        <a th:href="@{'/aggiornaProdotto' + '/' + ${prodotto.id}}">Modifica prodotto</a>
                     </div>
                 </div>
             </div>

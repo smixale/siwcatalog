@@ -90,4 +90,12 @@ public class FornitoreService {
         this.fornitoreRepository.findById(id);
         return id;
     }
+
+    public Fornitore aggiornaFornitore(Long id, String nome, String email, String indirizzo){
+        Fornitore fornitore = this.fornitoreRepository.findById(id).get();
+        fornitore.setNomeFornitore(nome);
+        fornitore.setEmailFornitore(email);
+        fornitore.setIndirizzo(indirizzo);
+        return this.fornitoreRepository.save(fornitore);
+    }
 }

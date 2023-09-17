@@ -16,6 +16,10 @@ import it.uniroma3.siwcatalog.model.Fornitore;
 import it.uniroma3.siwcatalog.service.FornitoreService;
 import it.uniroma3.siwcatalog.service.ProdottoService;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 
 
@@ -41,11 +45,11 @@ public class FornitoreController {
     
     /* mapping dalla pagina formNewFornitore per la pagina nel dettaglio del fornitore appena inserito */
     @PostMapping("/fornitore")
-    public String listaFornitori(Model model, @Valid @ModelAttribute("fornitore") Fornitore fornitore, BindingResult bindingResult) throws IOException{
+    public String listaFornitori(@Valid @ModelAttribute("fornitore") Fornitore fornitore, BindingResult bindingResult, Model model) throws IOException{
         this.fornitoreValidator.validate(fornitore, bindingResult);
         if (!bindingResult.hasErrors()) {            
             this.fornitoreService.creaFornitore(fornitore);
-            model.addAttribute("fornitori", fornitore);  
+            model.addAttribute("fornitore", fornitore);  
             return "fornitore.html";
         }else{
             model.addAttribute("messaggio", "Questo fornitore è già presente nel sistema");
@@ -111,5 +115,24 @@ public class FornitoreController {
         return "listaFornitori.html";
     }
     
+    @GetMapping("/aggiornaFornitore/{id}")
+    public String getMethodName(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("vecchioFornitore", this.fornitoreService.findFornitoreById(id));
+        model.addAttribute("nuovoFornitore", new Fornitore());
+        return "formAggiornaFornitore.html";
+    }
+    
+    @PostMapping(value="/aggiornaFornitore/{id}")
+    public String postMethodName(@Valid @ModelAttribute("fornitore") Fornitore nuovo, BindingResult bindingResult, Model model, @PathVariable("id") Long id) {
+
+        this.fornitoreValidator.validate(nuovo, bindingResult);
+        if (!bindingResult.hasErrors()) {            
+            model.addAttribute("fornitori", this.fornitoreService.aggiornaFornitore(id, nuovo.getNomeFornitore(), nuovo.getEmailFornitore(), nuovo.getIndirizzo()));  
+            return "fornitore.html";
+        }else{
+            model.addAttribute("messaggio", "Questo fornitore è già presente nel sistema");
+            return "erroreFornitore.html";
+        }
+    }
     
 }

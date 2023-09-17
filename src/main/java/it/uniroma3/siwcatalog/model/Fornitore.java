@@ -2,6 +2,7 @@ package it.uniroma3.siwcatalog.model;
 
 import jakarta.validation.constraints.NotBlank;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.*;
@@ -21,6 +22,13 @@ public class Fornitore {
 
     private String indirizzo;
 
+    @ManyToMany(mappedBy = "fornitori")
+    private Set <Prodotto> prodottiForniti;
+
+    public Fornitore (){
+        this.prodottiForniti = new HashSet<>();
+    }
+
     public String getIndirizzo() {
         return indirizzo;
     }
@@ -28,9 +36,6 @@ public class Fornitore {
     public void setIndirizzo(String indirizzo) {
         this.indirizzo = indirizzo;
     }
-
-    @ManyToMany(mappedBy = "fornitori")
-    private Set <Prodotto> prodottiForniti;
 
     public Long getId() {
         return id;

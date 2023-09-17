@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Form aggiorn Prodotto</title>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="/css/stileFormNewProdotto.css">
+    </head>
+
+    <body>
+        <header>
+            <a href="/"><span id="logo">SIWCATALOG</span></a>
+
+            <a class="campoHeader" href="/listaFornitori">fornitori</a>
+
+            <a class="campoHeader" href="/listaProdotti">prodotti</a>
+
+            <a class="campoHeader" href="/formNewFornitore">aggiungi un fornitore</a>
+
+            <a class="campoHeader" href="/formNewProdotto">aggiungi un prodotto</a>
+
+            <a class="campoHeader" th:unless="${userDetails}" href="/login">Login</a>
+
+            <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
+        </header>
+
+        <p><br></p>
+
+        <div class="form">
+            <form class="formProdotto" th:action="@{'/aggiornaProdotto/' + ${vecchioProdotto.id}}" method="POST" th:object="${nuovoProdotto}" enctype="multipart/form-data">
+                <h1>Modifica <span th:text="${vecchioProdotto.nomeProdotto}"></span></h1>
+    
+                <div class="campoForm">
+                    <input type="text" th:field="${nuovoProdotto.nomeProdotto}" placeholder="Nome" required/>
+                </div>
+
+                <div class="campoForm">
+                    <input type="text" th:field="${nuovoProdotto.prezzo}" placeholder="Prezzo" min="0" stap="0.1" required/>
+                    <i class='bx bx-euro' ></i>
+                </div>
+
+                <div class="campoFormDescrizione">
+                    <textarea name="descrizione" placeholder="descrizione"></textarea>
+                </div>
+
+                <div class="campoImmagine">
+                    <span>Aggiungi un immagine</span>
+                    <input type="file" name="immagine" accept="image/png, image/jpeg" required/>
+                </div>
+    
+                <div class="submit">
+                    <button type="submit">conferma</button>
+                </div>
+            </form>
+        </div>
+
+    </body>
+</html>

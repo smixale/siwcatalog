@@ -38,6 +38,10 @@
                         <span>Indirizzo: </span>
                         <span th:text="${fornitore.indirizzo}"></span>
                     </p>
+
+                    <p>
+                        <a th:href="@{'/aggiornaFornitore/' + ${fornitore.id}}">Modifica fornitore</a>
+                    </p>
                 </div>
                 
                 <div class="prodotti">

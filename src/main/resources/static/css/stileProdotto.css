@@ -41,7 +41,7 @@ header a{
 }
 
 body{
-    background-color: rgba(38, 46, 50, 0.8);
+    background-color: rgba(31, 44, 51, 0.8);
     
 }
 
@@ -61,6 +61,21 @@ body{
     color: white;
     font-weight: bold;
 
+}
+
+.immagineNomePrezzo .prezzo{
+    margin-top: 30px;
+}
+
+.immagineNomePrezzo .modifica{
+    margin-top: 30px;
+}
+
+.modifica a{
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .nomePrezzo{
