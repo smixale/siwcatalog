@@ -42,6 +42,10 @@
                     <p>
                         <a th:href="@{'/aggiornaFornitore/' + ${fornitore.id}}">Modifica fornitore</a>
                     </p>
+
+                    <p>
+                        <a class="cancella" th:href="@{'/deleteFornitore/' + ${fornitore.id}}">Rimuovi</a>
+                    </p>
                 </div>
                 
                 <div class="prodotti">

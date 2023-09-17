@@ -43,6 +43,10 @@
                     <div class="modifica">
                         <a th:href="@{'/aggiornaProdotto' + '/' + ${prodotto.id}}">Modifica prodotto</a>
                     </div>
+
+                    <div class="rimuovi">
+                        <a class="cancella" th:href="@{'/deleteProdotto/' + ${prodotto.id}}">Rimuovi</a>  
+                    </div>
                 </div>
             </div>
 

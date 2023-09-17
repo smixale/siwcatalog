@@ -48,6 +48,8 @@ body{
 
 
 
+
+
 .content{
     margin-top: 80px;
     padding: 0px 20%;
@@ -76,6 +78,10 @@ body{
     color: white;
     font-size: 20px;
     margin-top: 20px;
+}
+
+.content .cancella{
+    color: red;
 }
 
 .prodotti{
