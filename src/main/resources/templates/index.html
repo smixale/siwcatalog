@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>siwcatalog index</title>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="/css/stile.css">
     </head>
 
@@ -22,10 +23,13 @@
             <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
         </header>
 
+        <p><br></p>
 
+        <form class="ricerca" method="post" th:action="@{/cercaProdottoFornitore}" enctype="multipart/form-data">
+            <input type="text" placeholder="Cerca" name="cerca" th:value="${cerca}">
+            
+            <button id="submit" type="submit"><i class='bx bx-search'></i></button>
+        </form>
 
     </body>
-
-        
-
 </html>

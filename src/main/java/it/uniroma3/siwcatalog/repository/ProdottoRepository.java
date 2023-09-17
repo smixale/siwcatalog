@@ -1,5 +1,7 @@
 package it.uniroma3.siwcatalog.repository;
 
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 
 import it.uniroma3.siwcatalog.model.Fornitore;
@@ -20,4 +22,6 @@ public interface ProdottoRepository extends CrudRepository<Prodotto,Long>{
 	public Iterable<Fornitore> findFornitoriNotInProdotto( @Param("prodottoId") Long id);*/
     
     public boolean existsByNomeProdottoAndPrezzo(String nomeProdotto,Float prezzo);
+
+	public List<Prodotto> findByNomeProdotto(String nome);
 }

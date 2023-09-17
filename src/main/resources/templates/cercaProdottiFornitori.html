@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>cerca</title>
+        <link rel="stylesheet" href="/css/stileCercaProdottoFornitore.css">
+    </head>
+
+    <body>
+        <header>
+            <a href="/"><span id="logo">SIWCATALOG</span></a>
+
+            <a class="campoHeader" href="/listaFornitori">fornitori</a>
+
+            <a class="campoHeader" href="/listaProdotti">prodotti</a>
+
+            <a class="campoHeader" href="/formNewFornitore">aggiungi un fornitore</a>
+
+            <a class="campoHeader" href="/formNewProdotto">aggiungi un prodotto</a>
+
+            <a class="campoHeader" th:unless="${userDetails}" href="/login">Login</a>
+
+            <a class="campoHeader" th:if="${userDetails}"  href="/logout">Logout</a>
+        </header>
+
+        <p><br></p>
+
+        <div class="content">
+            <div class="listaProdotti">
+                <div class="prodotti" th:each="prodotto : ${prodotti}">
+                    <div class="card">  
+    
+                        <img th:src="@{'/immagineProdotto/' + ${prodotto.immagineProdotto.id}}">
+    
+                        <div class="informazioni">
+                            <span class="nome" th:text="${prodotto.nomeProdotto}"></span>
+                            <p class="prezzo" th:if="${!prodotto.fornitori.isEmpty()}">
+                                <span>Prezzo: </span>
+                                <span th:text="${prodotto.prezzo}"></span>
+                                <span>€</span>
+                            </p>
+                            <p class="prezzo" th:if="${prodotto.fornitori.isEmpty()}">
+                                <span>Prodotto non disponibile</span>
+                            </p>
+                            
+                            <a class="dettagli" th:href="@{'/prodotto' + '/' + ${prodotto.id}}">dettagli prodotto</a>
+                            <a class="cancella" th:href="@{'/deleteProdotto/' + ${prodotto.id}}">Rimuovi</a>  
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+    
+            <div th:each="fornitore : ${fornitori}" class="fornitori">
+                <span>fornitore</span>
+            </div>
+        </div>
+    </body>
+</html>

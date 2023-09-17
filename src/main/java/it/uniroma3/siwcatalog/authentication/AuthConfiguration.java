@@ -57,7 +57,8 @@ import javax.sql.DataSource;
                 "/addProdotto/{fornitoreId}/{prodottoId}", "/removeProdotto/{fornitoreId}/{prodottoId}", "/formUpdateProdotto/{id}", "/addFornitore/{prodottoId}/{fornitoreId}", "/removeFornitore/{prodottoId}/{fornitoreId}",
                 "/removeCommento/{prodottoId}/{commentoId}", "/deleteFornitore/{id}", "/deleteProdotto/{id}", "/aggiornaProdotto/{id}", "/aggiornaFornitore/{id}").permitAll()
         		// chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 
-                .requestMatchers(HttpMethod.POST,"/register", "/login", "/listaFornitori", "/fornitore", "/prodotto", "/formUpdateFornitore/{id}", "/addCommento/{id}", "/aggiornaProdotto/{id}", "/aggiornaFornitore/{id}").permitAll()
+                .requestMatchers(HttpMethod.POST,"/register", "/login", "/listaFornitori", "/fornitore", "/prodotto", "/formUpdateFornitore/{id}", "/addCommento/{id}", "/aggiornaProdotto/{id}", "/aggiornaFornitore/{id}",
+                "/cercaProdottoFornitore").permitAll()
                 
                 .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
                 .requestMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority(ADMIN_ROLE)

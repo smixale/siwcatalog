@@ -49,36 +49,6 @@ body{
 
 
 
-
-.ricerca{
-    text-align: center;
-    margin-top: 10%;
-    position: relative;
-}
-
-.ricerca input{
-    width: 40%;
-    height: 60px;
-    border-radius: 30px;
-    border: none;
-    padding: 20px 45px 20px 20px; 
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    font-size: 20px;
-}
-
-.ricerca input::placeholder{
-    color: black;
-    font-size: 20px;
-    border: none;
-}
-
-.ricerca button{
-    width: 60px;
-    height: 60px;
-    border-radius: 40px;
-    cursor: pointer;
-}
-
-.ricerca i{
-    font-size: 20px;
+.content{
+    margin-top: 80px;
 }
