@@ -77,7 +77,7 @@ public class FornitoreController {
     public String vaiFormUpdateFornitore(@PathVariable("id") Long id,Model model) {
         Fornitore fornitore= this.fornitoreService.findFornitoreById(id);
         model.addAttribute("fornitore", fornitore);
-        model.addAttribute("prodotti", this.prodottoService.findAllProdotti());
+        model.addAttribute("prodotti", this.fornitoreService.prodottiDaAggiungere(id));
         return "formUpdateFornitore.html";
     }
     
@@ -89,7 +89,7 @@ public class FornitoreController {
         this.prodottoService.addFornitore(prodottoId, fornitoreId);
 
         model.addAttribute("fornitore", this.fornitoreService.addProdotto(fornitoreId,prodottoId));
-        model.addAttribute("prodotti", this.prodottoService.findAllProdotti());
+        model.addAttribute("prodotti", this.fornitoreService.prodottiDaAggiungere(fornitoreId));
         return "formUpdateFornitore.html";
     }
 
@@ -99,7 +99,7 @@ public class FornitoreController {
         this.prodottoService.removeFornitore(prodottoId, fornitoreId);
 
         model.addAttribute("fornitore", this.fornitoreService.removeProdotto(fornitoreId,prodottoId));
-        model.addAttribute("prodotti", this.prodottoService.findAllProdotti());
+        model.addAttribute("prodotti", this.fornitoreService.prodottiDaAggiungere(fornitoreId));
 
         return "formUpdateFornitore.html";
     }

@@ -86,7 +86,7 @@ public class ProdottoController {
         Prodotto prodotto = this.prodottoService.findProdottoById(id);
 
         model.addAttribute("prodotto", prodotto);
-        model.addAttribute("fornitori", this.fornitoreService.findAllFornitori());
+        model.addAttribute("fornitori", this.prodottoService.fornitoriDaAggiungere(id));
 
         return "formUpdateProdotto.html";
     }
@@ -97,7 +97,7 @@ public class ProdottoController {
         this.fornitoreService.addProdotto(fornitoreId, prodottoId);
 
         model.addAttribute("prodotto", this.prodottoService.addFornitore(prodottoId, fornitoreId));
-        model.addAttribute("fornitori", this.fornitoreService.findAllFornitori());
+        model.addAttribute("fornitori", this.prodottoService.fornitoriDaAggiungere(prodottoId));
 
         return "formUpdateProdotto.html";
     }
@@ -108,7 +108,7 @@ public class ProdottoController {
         this.fornitoreService.removeProdotto(fornitoreId, prodottoId);
 
         model.addAttribute("prodotto", this.prodottoService.removeFornitore(prodottoId, fornitoreId));
-        model.addAttribute("fornitori", this.fornitoreService.findAllFornitori());
+        model.addAttribute("fornitori", this.prodottoService.fornitoriDaAggiungere(prodottoId));
         
         return "formUpdateProdotto.html";
     }

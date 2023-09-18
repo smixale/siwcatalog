@@ -1,6 +1,8 @@
 package it.uniroma3.siwcatalog.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,6 +156,7 @@ public class ProdottoService {
         return id;
     }
 
+    @Transactional
     public Prodotto aggiornaProdotto (Long vecchioId,String nome, Float prezzo, String descrizione, MultipartFile immagine) throws IOException{
         
         Prodotto vecchio = this.prodottoRepository.findById(vecchioId).get();
@@ -163,5 +166,15 @@ public class ProdottoService {
         vecchio.setDescrizione(descrizione);
 
         return this.creaProdotto(vecchio, immagine);
+    }
+
+    @Transactional
+    public List<Fornitore> fornitoriDaAggiungere(Long id){
+        List<Fornitore> fornitori = new ArrayList<>();
+
+        for (Fornitore f : this.fornitoreRepository.findFornitoriNotInProdotto(id)) {
+            fornitori.add(f);
+        }
+        return fornitori;
     }
 }

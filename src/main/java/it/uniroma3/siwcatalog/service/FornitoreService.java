@@ -1,5 +1,7 @@
 package it.uniroma3.siwcatalog.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,5 +99,15 @@ public class FornitoreService {
         fornitore.setEmailFornitore(email);
         fornitore.setIndirizzo(indirizzo);
         return this.fornitoreRepository.save(fornitore);
+    }
+
+    @Transactional
+    public List<Prodotto> prodottiDaAggiungere(Long id){
+        List<Prodotto> prodotti = new ArrayList<>();
+
+        for (Prodotto p : this.prodottoRepository.findProdottiNotInFornitore(id)) {
+            prodotti.add(p);
+        }
+        return prodotti;
     }
 }
