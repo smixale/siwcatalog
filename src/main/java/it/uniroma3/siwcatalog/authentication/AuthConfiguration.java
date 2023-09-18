@@ -52,16 +52,14 @@ import javax.sql.DataSource;
                 .authorizeHttpRequests()
 //                .requestMatchers("/**").permitAll()
                 // chiunque (autenticato o no) può accedere alle pagine index, login, register, ai css e alle immagini
-                .requestMatchers(HttpMethod.GET,"/","/index","/register","/css/**", "/images/**", "favicon.ico", "/formNewFornitore", "/listaFornitori", "/dettagliFornitore", "/fornitore/{id}",
-                "/formNewProdotto", "/prodotto/{id}", "/listaProdotti", "/prodotto/{id}", "/login", "/register", "/immagineProdotto/{id}", "/immagineProdotto/**", "/formUpdateFornitore/{id}",
-                "/addProdotto/{fornitoreId}/{prodottoId}", "/removeProdotto/{fornitoreId}/{prodottoId}", "/formUpdateProdotto/{id}", "/addFornitore/{prodottoId}/{fornitoreId}", "/removeFornitore/{prodottoId}/{fornitoreId}",
-                "/removeCommento/{prodottoId}/{commentoId}", "/deleteFornitore/{id}", "/deleteProdotto/{id}", "/aggiornaProdotto/{id}", "/aggiornaFornitore/{id}").permitAll()
+                .requestMatchers(HttpMethod.GET,"/","/index","/register","/css/**", "/images/**", "favicon.ico", "/listaFornitori", "/dettagliFornitore", "/fornitore/{id}", "/prodotto/{id}", "/listaProdotti", "/prodotto/{id}", "/login", "/register", "/immagineProdotto/{id}", 
+                "/immagineProdotto/**","/removeCommento/{prodottoId}/{commentoId}").permitAll()
         		// chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 
-                .requestMatchers(HttpMethod.POST,"/register", "/login", "/listaFornitori", "/fornitore", "/prodotto", "/formUpdateFornitore/{id}", "/addCommento/{id}", "/aggiornaProdotto/{id}", "/aggiornaFornitore/{id}",
-                "/cercaProdottoFornitore").permitAll()
+                .requestMatchers(HttpMethod.POST,"/register", "/login", "/addCommento/{id}","/cercaProdottoFornitore").permitAll()
                 
-                .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
-                .requestMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
+                .requestMatchers(HttpMethod.GET,"/admin/**", "/formNewFornitore","/formNewProdotto", "/formUpdateFornitore/{id}","/addProdotto/{fornitoreId}/{prodottoId}", "/removeProdotto/{fornitoreId}/{prodottoId}", "/formUpdateProdotto/{id}", "/addFornitore/{prodottoId}/{fornitoreId}", 
+                "/removeFornitore/{prodottoId}/{fornitoreId}", "/deleteFornitore/{id}", "/deleteProdotto/{id}", "/aggiornaProdotto/{id}", "/aggiornaFornitore/{id}").hasAnyAuthority(ADMIN_ROLE)
+                .requestMatchers(HttpMethod.POST,"/admin/**", "/fornitore", "/prodotto", "/listaFornitori", "/formUpdateFornitore/{id}", "/aggiornaProdotto/{id}", "/aggiornaFornitore/{id}").hasAnyAuthority(ADMIN_ROLE)
         		// tutti gli utenti autenticati possono accere alle pagine rimanenti 
                 .anyRequest().authenticated()
                 // LOGIN: qui definiamo il login

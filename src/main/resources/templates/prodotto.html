@@ -87,11 +87,12 @@
             
             <div class="commenti">
 
-                <span class="nienteCommenti" th:if="${prodotto.getCommenti().isEmpty()}">Sembra non ci siano commenti per questo prodotto, sii il primo a lasciarne uno!</span>
-                <span class="nienteCommenti" th:if="${!prodotto.getCommenti().isEmpty()}">Commenti:</span>
+                <span class="nienteCommenti" th:if="${prodotto.getCommenti().isEmpty() && user!=null}">Sembra non ci siano commenti per questo prodotto, sii il primo a lasciarne uno!</span>
+                <span class="nienteCommenti" th:if="${!prodotto.getCommenti().isEmpty() && user!=null}">Commenti:</span>
+                <span th:if="${user==null}">Solo gli utenti registrati possono leggere i commenti o lasciarne uno</span>
 
 
-                <div class="contenitoreCommenti">
+                <div th:if="${user!=null}" class="contenitoreCommenti">
 
                     <div class="listaCommenti" th:each="commento : ${prodotto.getCommenti()}">
                         <div class="commento">
