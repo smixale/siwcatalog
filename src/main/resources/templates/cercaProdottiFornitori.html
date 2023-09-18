@@ -25,13 +25,16 @@
         <p><br></p>
 
         <div class="content">
+            <span class="titolo" th:if="${!prodotti.isEmpty()}">Prodotti trovati:</span>
+            <span class="titolo" th:if="${prodotti.isEmpty()}">Nessun prodotto trovato</span>
+
             <div class="listaProdotti">
                 <div class="prodotti" th:each="prodotto : ${prodotti}">
-                    <div class="card">  
+                    <div class="cardProdotto">  
     
                         <img th:src="@{'/immagineProdotto/' + ${prodotto.immagineProdotto.id}}">
     
-                        <div class="informazioni">
+                        <div class="informazioniProdotto">
                             <span class="nome" th:text="${prodotto.nomeProdotto}"></span>
                             <p class="prezzo" th:if="${!prodotto.fornitori.isEmpty()}">
                                 <span>Prezzo: </span>

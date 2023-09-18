@@ -51,4 +51,82 @@ body{
 
 .content{
     margin-top: 80px;
+    padding: 40px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.content .titolo{
+    font-size: 30px;
+    color: white;
+
+}
+
+.cardProdotto{
+    max-width: 240px;
+    min-width: 240px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 15px 15px;
+    background-color: gray;
+    border: 2px solid rgb(255, 255, 255);
+    opacity: 80%;
+    margin-right: 40px;
+}
+
+.listaProdotti{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.cardProdotto img{
+    height: auto;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+.informazioniProdotto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.informazioniProdotto .nome{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    padding-right: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.informazioniProdotto .prezzo{
+    margin-bottom: 10px;
+}
+
+.informazioniProdotto .prezzo{
+    color: white;
+    text-align: center;
+}
+
+.informazioniProdotto a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.informazioniProdotto .dettagli{
+    margin-top: 50px;
+}
+
+
+.informazioniProdotto .cancella{
+    text-align: center;
+    color: red;
+    margin-top: 10px;
 }
