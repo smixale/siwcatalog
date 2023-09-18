@@ -52,7 +52,7 @@ body{
     flex-wrap: wrap;
 }
 
-.prodotti{
+.fornitori{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -62,7 +62,6 @@ body{
 .card{
     max-width: 300px;
     min-width: 300px;
-    background-color: green;
     margin-top: 20px;
     display: flex;
     justify-content: center;

@@ -47,8 +47,44 @@ body{
 
 
 
+.ricerca{
+    text-align: center;
+    position: relative;
+    margin-bottom: 80px;
+}
+
+.ricerca input{
+    width: 40%;
+    height: 60px;
+    border-radius: 30px;
+    border: none;
+    padding: 20px 45px 20px 20px; 
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    font-size: 20px;
+}
+
+.ricerca input::placeholder{
+    color: black;
+    font-size: 20px;
+    border: none;
+}
+
+.ricerca button{
+    width: 60px;
+    height: 60px;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+.ricerca i{
+    font-size: 20px;
+}
 
 
+
+
+
+/* sezzione prodotti */
 .content{
     margin-top: 80px;
     padding: 40px 40px;
@@ -59,7 +95,6 @@ body{
 .content .titolo{
     font-size: 30px;
     color: white;
-
 }
 
 .cardProdotto{
@@ -81,6 +116,7 @@ body{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
 .cardProdotto img{
@@ -130,3 +166,72 @@ body{
     color: red;
     margin-top: 10px;
 }
+
+
+
+/* sezione fornitori */
+.listaFornitori{
+    margin-top: 70px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.fornitori{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cardFornitore{
+    max-width: 300px;
+    min-width: 300px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    margin: 20px 50px;
+    padding: 15px 15px;
+    background-color: gray;
+    border: 1px solid rgb(255, 255, 255);
+    opacity: 80%;
+}
+
+.informazioni{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+.informazioni .nome{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    padding-right: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.cardFornitore a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.cardFornitore .dettagli{
+    margin-top: 50px;
+}
+
+.cardFornitore .cancella{
+    text-align: center;
+    color: red;
+    margin-top: 10px;
+}
+
+.informazioni .email{
+    margin-top: 20px;
+}
+
