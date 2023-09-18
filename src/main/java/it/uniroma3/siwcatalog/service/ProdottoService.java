@@ -47,6 +47,10 @@ public class ProdottoService {
         if (prodotto.getDescrizione().isEmpty()) {
             prodotto.setDescrizione("Nessuna descrizione...");
         }
+
+        if (prodotto.getPrezzo()<0) {
+            prodotto.setPrezzo(0f);;
+        }
         return this.prodottoRepository.save(prodotto);
     }
 

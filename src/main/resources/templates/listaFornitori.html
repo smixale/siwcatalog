@@ -9,13 +9,13 @@
         <header>
             <a href="/"><span id="logo">SIWCATALOG</span></a>
 
-            <a class="campoHeader" href="/listaFornitori">fornitori</a>
+            <a class="campoHeader" href="/listaFornitori">Fornitori</a>
 
-            <a class="campoHeader" href="/listaProdotti">prodotti</a>
+            <a class="campoHeader" href="/listaProdotti">Prodotti</a>
 
-            <a class="campoHeader" href="/formNewFornitore">aggiungi un fornitore</a>
+            <a th:if="${role!=null && role=='ADMIN'}" class="campoHeader" href="/formNewFornitore">Aggiungi un fornitore</a>
 
-            <a class="campoHeader" href="/formNewProdotto">aggiungi un prodotto</a>
+            <a th:if="${role!=null && role=='ADMIN'}" class="campoHeader" href="/formNewProdotto">Aggiungi un prodotto</a>
 
             <a class="campoHeader" th:unless="${userDetails}" href="/login">Login</a>
 
@@ -25,6 +25,8 @@
         <p><br></p>
 
         <div class="contenitore">
+            <span class="avviso" th:if="${fornitori.isEmpty()}">Sembra non ci siano fornitori nel sistema</span>
+
             <div class="fornitori" th:each="fornitore : ${fornitori}" >
                 <div class="card">  
 
@@ -41,7 +43,7 @@
                     </div>
 
                     <a class="dettagli" th:href="@{'/fornitore' + '/' + ${fornitore.id}}">dettagli fornitore</a>    
-                    <a class="cancella" th:href="@{'/deleteFornitore/' + ${fornitore.id}}">Rimuovi</a>
+                    <a th:if="${role!=null && role=='ADMIN'}" class="cancella" th:href="@{'/deleteFornitore/' + ${fornitore.id}}">Rimuovi</a>
 
                 </div>
             </div>

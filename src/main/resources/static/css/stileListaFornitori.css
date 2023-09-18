@@ -52,6 +52,12 @@ body{
     flex-wrap: wrap;
 }
 
+.contenitore .avviso{
+    text-align: center;
+    font-size: 30px;
+    color: white;
+}
+
 .fornitori{
     display: flex;
     flex-direction: row;

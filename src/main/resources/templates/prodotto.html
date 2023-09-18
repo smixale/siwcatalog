@@ -9,13 +9,13 @@
         <header>
             <a href="/"><span id="logo">SIWCATALOG</span></a>
 
-            <a class="campoHeader" href="/listaFornitori">fornitori</a>
+            <a class="campoHeader" href="/listaFornitori">Fornitori</a>
 
-            <a class="campoHeader" href="/listaProdotti">prodotti</a>
+            <a class="campoHeader" href="/listaProdotti">Prodotti</a>
 
-            <a class="campoHeader" href="/formNewFornitore">aggiungi un fornitore</a>
+            <a th:if="${role!=null && role=='ADMIN'}" class="campoHeader" href="/formNewFornitore">Aggiungi un fornitore</a>
 
-            <a class="campoHeader" href="/formNewProdotto">aggiungi un prodotto</a>
+            <a th:if="${role!=null && role=='ADMIN'}" class="campoHeader" href="/formNewProdotto">Aggiungi un prodotto</a>
 
             <a class="campoHeader" th:unless="${userDetails}" href="/login">Login</a>
 
@@ -41,11 +41,11 @@
                     </div>
 
                     <div class="modifica">
-                        <a th:href="@{'/aggiornaProdotto' + '/' + ${prodotto.id}}">Modifica prodotto</a>
+                        <a th:if="${role!=null && role=='ADMIN'}" th:href="@{'/aggiornaProdotto' + '/' + ${prodotto.id}}">Modifica prodotto</a>
                     </div>
 
                     <div class="rimuovi">
-                        <a class="cancella" th:href="@{'/deleteProdotto/' + ${prodotto.id}}">Rimuovi</a>  
+                        <a th:if="${role!=null && role=='ADMIN'}" class="cancella" th:href="@{'/deleteProdotto/' + ${prodotto.id}}">Rimuovi</a>  
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
             </div>
     
             <div class="fornitori">
-                <a class="modificaFornitori" th:href="@{'/formUpdateProdotto/' + ${prodotto.id}}">Modifica fornitori</a>
+                <a th:if="${role!=null && role=='ADMIN'}" class="modificaFornitori" th:href="@{'/formUpdateProdotto/' + ${prodotto.id}}">Modifica fornitori</a>
 
                 <span th:if="${prodotto.fornitori.isEmpty()}">Sembra non ci siano fornitori per questo prodotto</span>
                 <span th:if="${!prodotto.fornitori.isEmpty()}">Fornitori:</span>
