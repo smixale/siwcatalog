@@ -53,7 +53,7 @@
                             </p>
                             
                             <a class="dettagli" th:href="@{'/prodotto' + '/' + ${prodotto.id}}">dettagli prodotto</a>
-                            <a class="cancella" th:href="@{'/deleteProdotto/' + ${prodotto.id}}">Rimuovi</a>  
+                            <a th:if="${role!=null && role=='ADMIN'}" class="cancella" th:href="@{'/deleteProdotto/' + ${prodotto.id}}">Rimuovi</a>  
                         </div>
     
                     </div>
@@ -80,7 +80,7 @@
                         </div>
     
                         <a class="dettagli" th:href="@{'/fornitore' + '/' + ${fornitore.id}}">dettagli fornitore</a>    
-                        <a class="cancella" th:href="@{'/deleteFornitore/' + ${fornitore.id}}">Rimuovi</a>
+                        <a th:if="${role!=null && role=='ADMIN'}" class="cancella" th:href="@{'/deleteFornitore/' + ${fornitore.id}}">Rimuovi</a>
     
                     </div>
                 </div>
